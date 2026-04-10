@@ -1,4 +1,29 @@
+# Glaze Portfolio
+
+A modern, high-performance UI/UX portfolio built with Next.js, Framer Motion, and Tailwind CSS.
+
+## 🚀 Deployment
+
+This project is optimized for deployment on **Vercel**.
+
+### Option 1: Vercel GitHub Integration (Recommended)
+1. Push your code to GitHub.
+2. Go to [vercel.com/new](https://vercel.com/new).
+3. Import this repository.
+4. Click **Deploy**.
+
+### Option 2: Vercel CLI
+If you have the Vercel CLI installed:
+```bash
+vercel login
+vercel link
+vercel deploy
+```
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
 
 ## Getting Started
 
