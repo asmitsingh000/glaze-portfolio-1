@@ -11,10 +11,10 @@ const COLORS = {
   accent: "#2d5a3d",
 };
 
-const IMG_WEB   = "https://images.unsplash.com/photo-1774901128215-3549cc686921?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80";
-const IMG_BRAND = "https://images.unsplash.com/photo-1758873268877-3cd8ed329ed8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80";
-const IMG_MKT   = "https://images.unsplash.com/photo-1759215524600-7971d6a4dac0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80";
-const IMG_CODE  = "https://images.unsplash.com/photo-1563019589-7e7db5152430?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80";
+const IMG_WEB   = "/photos/school.png";
+const IMG_CLINC = "/photos/clinic.png";
+const IMG_MKT   = "/photos/marketing.png";
+const IMG_CODE  = "/photos/portfolio.png";
 
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -64,9 +64,9 @@ const projects = [
     desc: "End-to-end brand refresh: logo system, color language, typography, and a new marketing website for a SaaS startup.",
     stack: ["Figma", "Framer", "Brand Design", "Copywriting"],
     year: "2025",
-    img: IMG_BRAND,
-    live: "#",
-    github: "#",
+    img: IMG_CLINC,
+    live: "https://kalyan-v2.vercel.app/",
+    github: "https://kalyan-v2.vercel.app/",
   },
   {
     title: "GrowthPulse — Marketing Dashboard",
@@ -74,8 +74,8 @@ const projects = [
     stack: ["React", "Recharts", "Node.js", "Meta API"],
     year: "2024",
     img: IMG_MKT,
-    live: "#",
-    github: "#",
+    live: "https://suppermart.vercel.app/",
+    github: "https://suppermart.vercel.app/",
   },
   {
     title: "DealFlow — Client CRM",
@@ -83,8 +83,8 @@ const projects = [
     stack: ["Next.js", "Prisma", "TypeScript", "Resend"],
     year: "2024",
     img: IMG_CODE,
-    live: "#",
-    github: "#",
+    live: "https://my-portfolio-ten-jet-51.vercel.app/",
+    github: "https://my-portfolio-ten-jet-51.vercel.app/",
   },
 ];
 

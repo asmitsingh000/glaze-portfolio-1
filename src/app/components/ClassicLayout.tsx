@@ -14,10 +14,10 @@ const C = {
   goldMuted: "#9a7c24",
 };
 
-const IMG_WEB   = "https://images.unsplash.com/photo-1774901128215-3549cc686921?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80";
-const IMG_BRAND = "https://images.unsplash.com/photo-1758873268877-3cd8ed329ed8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80";
-const IMG_MKT   = "https://images.unsplash.com/photo-1759215524600-7971d6a4dac0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80";
-const IMG_CODE  = "https://images.unsplash.com/photo-1563019589-7e7db5152430?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80";
+const IMG_WEB   = "/photos/school.png";
+const IMG_CLINC = "/photos/clinic.png";
+const IMG_MKT   = "/photos/marketing.png";
+const IMG_CODE  = "/photos/portfolio.png";
 
 function useScrollReveal(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
@@ -130,7 +130,7 @@ function HeroParticles() {
 
 const projects = [
   { title: "School — Academic Institution Website", desc: "A clean, performant website built for a school. Covers academics, admissions, events, and institutional info with a polished modern design.", stack: ["Next.js", "TypeScript", "Vercel", "Tailwind CSS"], year: "2025", img: IMG_WEB, live: "https://school-omega-one.vercel.app/" },
-  { title: "Lumina — Brand Identity & Web",          desc: "End-to-end brand refresh: logo system, color language, typography, and a new marketing website built in Framer for rapid shipping.", stack: ["Figma", "Framer", "Brand Design", "Copywriting"],           year: "2025", img: IMG_BRAND, live: "" },
+  { title: "Lumina — Brand Identity & Web",          desc: "End-to-end brand refresh: logo system, color language, typography, and a new marketing website built in Framer for rapid shipping.", stack: ["Figma", "Framer", "Brand Design", "Copywriting"],           year: "2025", img: IMG_CLINC, live: "https://kalyan-v2.vercel.app/" },
   { title: "GrowthPulse — Marketing Dashboard",       desc: "Campaign management and analytics platform. Unified view of social, paid ads, SEO metrics, and automated monthly client reports.", stack: ["React", "Recharts", "Node.js", "Meta API"],                 year: "2024", img: IMG_MKT,   live: "" },
   { title: "DealFlow — Client CRM",                  desc: "Custom CRM for agency deal pipelines. Proposal tracking, client notes, automated follow-ups, contract history, and revenue reporting.", stack: ["Next.js", "Prisma", "TypeScript", "Resend"],              year: "2024", img: IMG_CODE,  live: "" },
 ];
