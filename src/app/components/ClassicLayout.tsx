@@ -137,9 +137,9 @@ const projects = [
 
 const team = [
   { name: "Asmit Singh",  role: "Web Development",  desc: "Architects and builds every digital product. From landing pages to full-stack platforms — if it runs in a browser, this is his domain.", initials: "AS", color: "#50C878" },
-  { name: "Riya Nair",    role: "Design & Creative", desc: "The visual mind of Glaze. Brand identity, UI systems, motion, and the visual language that makes clients' work impossible to ignore.", initials: "RN", color: "#D4AF37" },
-  { name: "Dev Kapoor",   role: "Marketing & Growth", desc: "Puts the right work in front of the right people. SEO, content strategy, paid campaigns — growth is the north star.", initials: "DK", color: "#6ba8d4" },
-  { name: "Samar Khan",   role: "Business & Deals",  desc: "The closer. Client relationships, proposals, partnerships — turning conversations into contracts and contracts into long-term trust.", initials: "SK", color: "#d4a050" },
+  { name: "Aanand Mehta",    role: "Design & Creative", desc: "The visual mind of Glaze. Brand identity, UI systems, motion, and the visual language that makes clients' work impossible to ignore.", initials: "AM", color: "#D4AF37" },
+  { name: "Santanu Deo",   role: "Marketing & Growth", desc: "Puts the right work in front of the right people. SEO, content strategy, paid campaigns — growth is the north star.", initials: "SD", color: "#6ba8d4" },
+  { name: "Kishan Sha",   role: "Business & Deals",  desc: "The closer. Client relationships, proposals, partnerships — turning conversations into contracts and contracts into long-term trust.", initials: "KS", color: "#d4a050" },
 ];
 
 const services = [

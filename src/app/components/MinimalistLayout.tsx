@@ -51,13 +51,13 @@ function RevealDiv({ children, delay = 0, style = {} }: { children: React.ReactN
 
 const projects = [
   {
-    title: "NexCart — E-commerce Platform",
-    desc: "Full-stack e-commerce build for a fashion brand. Custom storefront, admin dashboard, real-time inventory, and payment integration.",
-    stack: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
+    title: "School — Academic Institution Website",
+    desc: "A clean, performant website built for a school. Covers academics, admissions, events, and institutional info with a polished modern design.",
+    stack: ["Next.js", "TypeScript", "Vercel", "Tailwind CSS"],
     year: "2025",
     img: IMG_WEB,
-    live: "#",
-    github: "#",
+    live: "https://school-omega-one.vercel.app/",
+    github: "https://school-omega-one.vercel.app/",
   },
   {
     title: "Lumina — Brand Identity & Web",
@@ -104,24 +104,24 @@ const team = [
     color: "#2d5a3d",
   },
   {
-    name: "Riya Nair",
+    name: "Aanand Mehta",
     role: "Design & Creative",
     desc: "Shapes how everything looks and feels. Brand identity, UI systems, motion — the visual soul of every Glaze project.",
-    initials: "RN",
+    initials: "AM",
     color: "#5a3d6b",
   },
   {
-    name: "Dev Kapoor",
+    name: "Santanu Deo",
     role: "Marketing & Growth",
     desc: "Makes sure the right people see the right work. SEO, content, paid campaigns, and strategy — growth is the goal.",
-    initials: "DK",
+    initials: "SD",
     color: "#3d4f6b",
   },
   {
-    name: "Samar Khan",
+    name: "Kishan Sha",
     role: "Business & Deals",
     desc: "The closer. Client relationships, proposals, partnerships — making sure opportunities turn into lasting work.",
-    initials: "SK",
+    initials: "KS",
     color: "#6b4a2d",
   },
 ];
@@ -460,48 +460,69 @@ export function MinimalistLayout() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "28px" }}>
           {projects.map((p, i) => (
             <RevealDiv key={p.title} delay={i * 80}>
-              <div
-                style={{
-                  border: `1px solid ${COLORS.border}`,
-                  borderRadius: "6px",
-                  overflow: "hidden",
-                  background: COLORS.bg,
-                  transition: "border-color 0.2s",
-                  cursor: "default",
-                }}
-                onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.borderColor = COLORS.accent}
-                onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.borderColor = COLORS.border}
+              <a
+                href={p.live !== "#" ? p.live : undefined}
+                target={p.live !== "#" ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none", display: "block" }}
               >
-                <img
-                  src={p.img}
-                  alt={p.title}
-                  style={{ width: "100%", height: "200px", objectFit: "cover", display: "block" }}
-                />
-                <div style={{ padding: "24px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "10px" }}>
-                    <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "17px", fontWeight: 500, color: COLORS.text, margin: 0, lineHeight: 1.3, flex: 1 }}>
-                      {p.title}
-                    </h3>
-                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "11px", color: COLORS.muted, marginLeft: "12px", flexShrink: 0 }}>{p.year}</span>
-                  </div>
-                  <p style={{ fontSize: "12px", color: COLORS.muted, lineHeight: 1.7, margin: "0 0 16px" }}>{p.desc}</p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "20px" }}>
-                    {p.stack.map(s => (
-                      <span key={s} style={{ padding: "3px 8px", background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: "2px", fontSize: "10px", color: COLORS.accent, fontFamily: "'DM Mono', monospace" }}>
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                  <div style={{ display: "flex", gap: "16px" }}>
-                    <a href={p.live} style={{ fontSize: "11px", color: COLORS.accent, fontFamily: "'DM Mono', monospace", textDecoration: "none", letterSpacing: "0.08em" }}>
-                      LIVE ↗
-                    </a>
-                    <a href={p.github} style={{ fontSize: "11px", color: COLORS.muted, fontFamily: "'DM Mono', monospace", textDecoration: "none", letterSpacing: "0.08em" }}>
-                      CASE STUDY ↗
-                    </a>
+                <div
+                  style={{
+                    border: `1px solid ${COLORS.border}`,
+                    borderRadius: "6px",
+                    overflow: "hidden",
+                    background: COLORS.bg,
+                    transition: "border-color 0.2s, transform 0.2s, box-shadow 0.2s",
+                    cursor: p.live !== "#" ? "pointer" : "default",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLDivElement).style.borderColor = COLORS.accent;
+                    if (p.live !== "#") {
+                      (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = "0 12px 32px rgba(0,0,0,0.08)";
+                    }
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLDivElement).style.borderColor = COLORS.border;
+                    (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                  }}
+                >
+                  <img
+                    src={p.img}
+                    alt={p.title}
+                    style={{ width: "100%", height: "200px", objectFit: "cover", display: "block" }}
+                  />
+                  <div style={{ padding: "24px" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "10px" }}>
+                      <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "17px", fontWeight: 500, color: COLORS.text, margin: 0, lineHeight: 1.3, flex: 1 }}>
+                        {p.title}
+                      </h3>
+                      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "11px", color: COLORS.muted, marginLeft: "12px", flexShrink: 0 }}>{p.year}</span>
+                    </div>
+                    <p style={{ fontSize: "12px", color: COLORS.muted, lineHeight: 1.7, margin: "0 0 16px" }}>{p.desc}</p>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "20px" }}>
+                      {p.stack.map(s => (
+                        <span key={s} style={{ padding: "3px 8px", background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: "2px", fontSize: "10px", color: COLORS.accent, fontFamily: "'DM Mono', monospace" }}>
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                    <div style={{ display: "flex", gap: "16px" }}>
+                      {p.live !== "#" && (
+                        <span style={{ fontSize: "11px", color: COLORS.accent, fontFamily: "'DM Mono', monospace", letterSpacing: "0.08em" }}>
+                          LIVE ↗
+                        </span>
+                      )}
+                      {p.github !== "#" && (
+                        <span style={{ fontSize: "11px", color: COLORS.muted, fontFamily: "'DM Mono', monospace", letterSpacing: "0.08em" }}>
+                          VIEW PROJECT ↗
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
             </RevealDiv>
           ))}
         </div>
