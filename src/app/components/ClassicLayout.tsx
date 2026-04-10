@@ -129,10 +129,10 @@ function HeroParticles() {
 }
 
 const projects = [
-  { title: "NexCart — E-commerce Platform",    desc: "Full-stack storefront for a fashion brand. Custom admin, real-time inventory, Stripe checkout, and a CMS-driven product catalogue.", stack: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"], year: "2025", img: IMG_WEB },
-  { title: "Lumina — Brand Identity & Web",    desc: "End-to-end brand refresh: logo system, color language, typography, and a new marketing website built in Framer for rapid shipping.", stack: ["Figma", "Framer", "Brand Design", "Copywriting"],           year: "2025", img: IMG_BRAND },
-  { title: "GrowthPulse — Marketing Dashboard", desc: "Campaign management and analytics platform. Unified view of social, paid ads, SEO metrics, and automated monthly client reports.", stack: ["React", "Recharts", "Node.js", "Meta API"],                 year: "2024", img: IMG_MKT },
-  { title: "DealFlow — Client CRM",            desc: "Custom CRM for agency deal pipelines. Proposal tracking, client notes, automated follow-ups, contract history, and revenue reporting.", stack: ["Next.js", "Prisma", "TypeScript", "Resend"],              year: "2024", img: IMG_CODE },
+  { title: "School — Academic Institution Website", desc: "A clean, performant website built for a school. Covers academics, admissions, events, and institutional info with a polished modern design.", stack: ["Next.js", "TypeScript", "Vercel", "Tailwind CSS"], year: "2025", img: IMG_WEB, live: "https://school-omega-one.vercel.app/" },
+  { title: "Lumina — Brand Identity & Web",          desc: "End-to-end brand refresh: logo system, color language, typography, and a new marketing website built in Framer for rapid shipping.", stack: ["Figma", "Framer", "Brand Design", "Copywriting"],           year: "2025", img: IMG_BRAND, live: "" },
+  { title: "GrowthPulse — Marketing Dashboard",       desc: "Campaign management and analytics platform. Unified view of social, paid ads, SEO metrics, and automated monthly client reports.", stack: ["React", "Recharts", "Node.js", "Meta API"],                 year: "2024", img: IMG_MKT,   live: "" },
+  { title: "DealFlow — Client CRM",                  desc: "Custom CRM for agency deal pipelines. Proposal tracking, client notes, automated follow-ups, contract history, and revenue reporting.", stack: ["Next.js", "Prisma", "TypeScript", "Resend"],              year: "2024", img: IMG_CODE,  live: "" },
 ];
 
 const team = [
@@ -389,32 +389,44 @@ export function ClassicLayout() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "28px" }}>
           {projects.map((p, i) => (
             <RevealDiv key={p.title} delay={i * 90}>
-              <div
-                style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: "4px", overflow: "hidden", transition: "transform 0.3s, box-shadow 0.3s, border-color 0.3s", cursor: "default" }}
-                onMouseEnter={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform = "translateY(-6px)"; el.style.boxShadow = `0 20px 40px rgba(80,200,120,0.08)`; el.style.borderColor = C.accent; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform = "translateY(0)"; el.style.boxShadow = "none"; el.style.borderColor = C.border; }}
+              <a
+                href={p.live || undefined}
+                target={p.live ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none", display: "block" }}
               >
-                <div style={{ position: "relative", height: "220px", overflow: "hidden" }}>
-                  <img src={p.img} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "brightness(0.75) saturate(0.9)" }} />
-                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,26,15,0.85) 0%, transparent 60%)" }} />
-                  <span style={{ position: "absolute", bottom: "14px", right: "16px", fontFamily: "'Cinzel', serif", fontSize: "13px", color: C.gold }}>
-                    {p.year}
-                  </span>
-                </div>
-                <div style={{ padding: "24px 28px" }}>
-                  <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "15px", fontWeight: 400, color: C.text, marginBottom: "12px", letterSpacing: "0.04em", lineHeight: 1.4 }}>
-                    {p.title}
-                  </h3>
-                  <p style={{ fontSize: "16px", color: C.muted, lineHeight: 1.7, marginBottom: "20px" }}>{p.desc}</p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
-                    {p.stack.map(s => (
-                      <span key={s} style={{ padding: "3px 10px", border: `1px solid ${C.accent}`, borderRadius: "2px", fontFamily: "'Crimson Pro', serif", fontSize: "13px", color: C.accent }}>
-                        {s}
+                <div
+                  style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: "4px", overflow: "hidden", transition: "transform 0.3s, box-shadow 0.3s, border-color 0.3s", cursor: p.live ? "pointer" : "default" }}
+                  onMouseEnter={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform = "translateY(-6px)"; el.style.boxShadow = `0 20px 40px rgba(80,200,120,0.08)`; el.style.borderColor = p.live ? C.gold : C.accent; }}
+                  onMouseLeave={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform = "translateY(0)"; el.style.boxShadow = "none"; el.style.borderColor = C.border; }}
+                >
+                  <div style={{ position: "relative", height: "220px", overflow: "hidden" }}>
+                    <img src={p.img} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "brightness(0.75) saturate(0.9)" }} />
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,26,15,0.85) 0%, transparent 60%)" }} />
+                    <span style={{ position: "absolute", bottom: "14px", right: "16px", fontFamily: "'Cinzel', serif", fontSize: "13px", color: C.gold }}>
+                      {p.year}
+                    </span>
+                    {p.live && (
+                      <span style={{ position: "absolute", top: "14px", right: "14px", fontFamily: "'Cinzel', serif", fontSize: "10px", color: C.gold, letterSpacing: "0.15em", background: "rgba(10,26,15,0.8)", padding: "4px 10px", borderRadius: "2px", border: `1px solid ${C.gold}40` }}>
+                        LIVE ↗
                       </span>
-                    ))}
+                    )}
+                  </div>
+                  <div style={{ padding: "24px 28px" }}>
+                    <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "15px", fontWeight: 400, color: C.text, marginBottom: "12px", letterSpacing: "0.04em", lineHeight: 1.4 }}>
+                      {p.title}
+                    </h3>
+                    <p style={{ fontSize: "16px", color: C.muted, lineHeight: 1.7, marginBottom: "20px" }}>{p.desc}</p>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                      {p.stack.map(s => (
+                        <span key={s} style={{ padding: "3px 10px", border: `1px solid ${C.accent}`, borderRadius: "2px", fontFamily: "'Crimson Pro', serif", fontSize: "13px", color: C.accent }}>
+                          {s}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
             </RevealDiv>
           ))}
         </div>
