@@ -120,8 +120,8 @@ const projects = [
     stack: ["Next.js", "TypeScript", "Vercel", "Tailwind CSS", "PostgreSQL", "Prisma", "Admin Panel", "Automation", "Email Automation"],
     year: "2025",
     img: IMG_WEB,
-    live: "https://school-omega-one.vercel.app/",
-    github: "https://school-omega-one.vercel.app/",
+    live: "https://xyz-school.vercel.app",
+    github: "https://xyz-school.vercel.app/",
   },
   {
     title: "Kalyan — Brand Identity & Web",
@@ -129,8 +129,8 @@ const projects = [
     stack: ["Figma", "Framer", "Brand Design", "Copywriting", "MongoDB", "Automation", "Admin Panel" ],
     year: "2025",
     img: IMG_CLINC,
-    live: "https://kalyan-v2.vercel.app/",
-    github: "https://kalyan-v2.vercel.app/",
+    live: "https://clinic-three-pi.vercel.app/",
+    github: "https://clinic-three-pi.vercel.app/",
   },
   {
     title: "Suppermart — E-Commerce Website",
