@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: "Welcome to our portfolio. visit it and see how it is befor any decision",
     images: ["/photos/main/portfolio.png"],
   },
-  metadataBase: new URL("https://glaze-portfolio-1.vercel.app/"),
+  metadataBase: new URL("https://glazedizitalagency.vercel.app//"),
 };
 
 export default function RootLayout({
