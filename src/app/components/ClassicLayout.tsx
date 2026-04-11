@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 const C = {
   bg: "#0a1a0f",
@@ -19,33 +20,17 @@ const IMG_CLINC = "/photos/clinic.png";
 const IMG_MKT   = "/photos/marketing.png";
 const IMG_CODE  = "/photos/portfolio.png";
 
-function useScrollReveal(threshold = 0.1) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return { ref, visible };
-}
-
 function RevealDiv({ children, delay = 0, style = {} }: { children: React.ReactNode; delay?: number; style?: React.CSSProperties }) {
-  const { ref, visible } = useScrollReveal();
   return (
-    <div
-      ref={ref}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(20px)",
-        transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
-        ...style,
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: delay / 1000 }}
+      style={style}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 
@@ -129,10 +114,42 @@ function HeroParticles() {
 }
 
 const projects = [
-  { title: "School — Academic Institution Website", desc: "A clean, performant website built for a school. Covers academics, admissions, events, and institutional info with a polished modern design.", stack: ["Next.js", "TypeScript", "Vercel", "Tailwind CSS"], year: "2025", img: IMG_WEB, live: "https://school-omega-one.vercel.app/" },
-  { title: "Lumina — Brand Identity & Web",          desc: "End-to-end brand refresh: logo system, color language, typography, and a new marketing website built in Framer for rapid shipping.", stack: ["Figma", "Framer", "Brand Design", "Copywriting"],           year: "2025", img: IMG_CLINC, live: "https://kalyan-v2.vercel.app/" },
-  { title: "GrowthPulse — Marketing Dashboard",       desc: "Campaign management and analytics platform. Unified view of social, paid ads, SEO metrics, and automated monthly client reports.", stack: ["React", "Recharts", "Node.js", "Meta API"],                 year: "2024", img: IMG_MKT,   live: "" },
-  { title: "DealFlow — Client CRM",                  desc: "Custom CRM for agency deal pipelines. Proposal tracking, client notes, automated follow-ups, contract history, and revenue reporting.", stack: ["Next.js", "Prisma", "TypeScript", "Resend"],              year: "2024", img: IMG_CODE,  live: "" },
+  {
+    title: "School — Academic Institution Website",
+    desc: "A clean, performant website built for a school. Covers academics, admissions, events, and institutional info with a polished modern design.",
+    stack: ["Next.js", "TypeScript", "Vercel", "Tailwind CSS", "PostgreSQL", "Prisma", "Admin Panel", "Automation", "Email Automation"],
+    year: "2025",
+    img: IMG_WEB,
+    live: "https://school-omega-one.vercel.app/",
+    github: "https://school-omega-one.vercel.app/",
+  },
+  {
+    title: "Kalyan — Brand Identity & Web",
+    desc: "End-to-end brand refresh: logo system, color language, typography, and a new marketing website for a dental clinic.",
+    stack: ["Figma", "Framer", "Brand Design", "Copywriting", "MongoDB", "Automation", "Admin Panel" ],
+    year: "2025",
+    img: IMG_CLINC,
+    live: "https://kalyan-v2.vercel.app/",
+    github: "https://kalyan-v2.vercel.app/",
+  },
+  {
+    title: "Suppermart — E-Commerce Website",
+    desc: "A clean, performant website built for a suppermart. Covers products, cart, checkout, and customer information with a polished modern design.",
+    stack: ["React", "Recharts", "Node.js", "Meta API", "My SQL"],
+    year: "2025",
+    img: IMG_MKT,
+    live: "https://suppermart.vercel.app/",
+    github: "https://suppermart.vercel.app/",
+  },
+  {
+    title: "My Portfolio",
+    desc: "A clean, performant website built for a portfolio. Covers projects, services, and contact information with a polished modern design.",
+    stack: ["Next.js", "Prisma", "TypeScript", "Resend"],
+    year: "2026",
+    img: IMG_CODE,
+    live: "https://my-portfolio-ten-jet-51.vercel.app/",
+    github: "https://my-portfolio-ten-jet-51.vercel.app/",
+  },
 ];
 
 const team = [
@@ -200,7 +217,7 @@ export function ClassicLayout() {
         }}
       >
         <span style={{ fontFamily: "'Cinzel', serif", fontSize: "18px", color: C.gold, fontWeight: 400, letterSpacing: "0.2em" }}>
-          GLAZE
+          <a href="#hero">GLAZE</a>
         </span>
 
         {/* Desktop */}
@@ -250,7 +267,7 @@ export function ClassicLayout() {
       )}
 
       {/* ── HERO ── */}
-      <section style={{ position: "relative", minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", overflow: "hidden", padding: "80px 40px" }}>
+      <section id="hero" style={{ position: "relative", minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", overflow: "hidden", padding: "80px 40px" }}>
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, #081510 0%, #0a1a0f 40%, #0d2216 70%, #070f09 100%)", transform: `translateY(${scrollY * 0.25}px)` }} />
         <HeroParticles />
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }}>
@@ -334,7 +351,7 @@ export function ClassicLayout() {
                 </div>
               ))}
             </div>
-            <div style={{ padding: "16px 20px", border: `1px solid ${C.accent}`, borderRadius: "2px", display: "flex", alignItems: "center", gap: "12px" }}>
+            <div onClick={() => scrollTo("contact")} style={{ cursor: "pointer", padding: "16px 20px", border: `1px solid ${C.accent}`, borderRadius: "2px", display: "flex", alignItems: "center", gap: "12px" }}>
               <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: C.accent, display: "inline-block", animation: "pulse-gold 2s infinite" }} />
               <span style={{ fontFamily: "'Cinzel', serif", fontSize: "11px", color: C.accent, letterSpacing: "0.15em" }}>
                 OPEN FOR NEW PROJECTS
@@ -558,9 +575,9 @@ export function ClassicLayout() {
             <p style={{ fontFamily: "'Cinzel', serif", fontSize: "11px", color: C.gold, letterSpacing: "0.25em", marginBottom: "28px" }}>CHANNELS</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0", marginBottom: "48px" }}>
               {[
-                { label: "GitHub",  url: "https://github.com" },
-                { label: "LinkedIn", url: "https://linkedin.com" },
-                { label: "hello@glaze.agency", url: "mailto:hello@glaze.agency" },
+                 { label: "GitHub", url: "https://github.com/asmitsingh000" },
+                  { label: "LinkedIn", url: "https://www.linkedin.com/in/asmit-singh-1a76133b0/" },
+                  { label: "Email — glaze0999@gmail.com", url: "mailto:glaze0999@gmail.com" },
               ].map(link => (
                 <a
                   key={link.label}

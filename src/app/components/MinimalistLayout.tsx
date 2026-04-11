@@ -1,8 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
-const COLORS = {
+const LIGHT_COLORS = {
   bg: "#fafaf9",
   surface: "#f0efed",
   border: "#e0ddd8",
@@ -11,41 +12,31 @@ const COLORS = {
   accent: "#2d5a3d",
 };
 
+const DARK_COLORS = {
+  bg: "#121212",
+  surface: "#1e1e1e",
+  border: "#333333",
+  text: "#f0f0f0",
+  muted: "#a0a0a0",
+  accent: "#4ade80",
+};
+
 const IMG_WEB   = "/photos/school.png";
 const IMG_CLINC = "/photos/clinic.png";
 const IMG_MKT   = "/photos/marketing.png";
 const IMG_CODE  = "/photos/portfolio.png";
 
-function useScrollReveal() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.1 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return { ref, visible };
-}
-
 function RevealDiv({ children, delay = 0, style = {} }: { children: React.ReactNode; delay?: number; style?: React.CSSProperties }) {
-  const { ref, visible } = useScrollReveal();
   return (
-    <div
-      ref={ref}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(16px)",
-        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
-        ...style,
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: delay / 1000 }}
+      style={style}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 
@@ -53,35 +44,35 @@ const projects = [
   {
     title: "School — Academic Institution Website",
     desc: "A clean, performant website built for a school. Covers academics, admissions, events, and institutional info with a polished modern design.",
-    stack: ["Next.js", "TypeScript", "Vercel", "Tailwind CSS"],
+    stack: ["Next.js", "TypeScript", "Vercel", "Tailwind CSS", "PostgreSQL", "Prisma", "Admin Panel", "Automation", "Email Automation"],
     year: "2025",
     img: IMG_WEB,
     live: "https://school-omega-one.vercel.app/",
     github: "https://school-omega-one.vercel.app/",
   },
   {
-    title: "Lumina — Brand Identity & Web",
-    desc: "End-to-end brand refresh: logo system, color language, typography, and a new marketing website for a SaaS startup.",
-    stack: ["Figma", "Framer", "Brand Design", "Copywriting"],
+    title: "Kalyan — Brand Identity & Web",
+    desc: "End-to-end brand refresh: logo system, color language, typography, and a new marketing website for a dental clinic.",
+    stack: ["Figma", "Framer", "Brand Design", "Copywriting", "MongoDB", "Automation", "Admin Panel" ],
     year: "2025",
     img: IMG_CLINC,
     live: "https://kalyan-v2.vercel.app/",
     github: "https://kalyan-v2.vercel.app/",
   },
   {
-    title: "GrowthPulse — Marketing Dashboard",
-    desc: "Analytics and campaign management platform. Unified view of social, paid ads, SEO metrics, and client reporting.",
-    stack: ["React", "Recharts", "Node.js", "Meta API"],
-    year: "2024",
+    title: "Suppermart — E-Commerce Website",
+    desc: "A clean, performant website built for a suppermart. Covers products, cart, checkout, and customer information with a polished modern design.",
+    stack: ["React", "Recharts", "Node.js", "Meta API", "My SQL"],
+    year: "2025",
     img: IMG_MKT,
     live: "https://suppermart.vercel.app/",
     github: "https://suppermart.vercel.app/",
   },
   {
-    title: "DealFlow — Client CRM",
-    desc: "Custom CRM built for an agency's deal pipeline. Proposal tracking, client notes, automated follow-ups, and reporting.",
+    title: "My Portfolio",
+    desc: "A clean, performant website built for a portfolio. Covers projects, services, and contact information with a polished modern design.",
     stack: ["Next.js", "Prisma", "TypeScript", "Resend"],
-    year: "2024",
+    year: "2026",
     img: IMG_CODE,
     live: "https://my-portfolio-ten-jet-51.vercel.app/",
     github: "https://my-portfolio-ten-jet-51.vercel.app/",
@@ -131,6 +122,9 @@ export function MinimalistLayout() {
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const COLORS = isDarkMode ? DARK_COLORS : LIGHT_COLORS;
 
   const switchMode = () => {
     localStorage.removeItem("asmit-style-mode");
@@ -159,7 +153,7 @@ export function MinimalistLayout() {
           position: "sticky",
           top: 0,
           zIndex: 100,
-          background: "rgba(250,250,249,0.92)",
+          background: isDarkMode ? "rgba(18,18,18,0.92)" : "rgba(250,250,249,0.92)",
           backdropFilter: "blur(10px)",
           borderBottom: `1px solid ${COLORS.border}`,
           padding: "0 40px",
@@ -205,6 +199,22 @@ export function MinimalistLayout() {
               {l.label.toUpperCase()}
             </button>
           ))}
+          <button
+            onClick={() => setIsDarkMode(!isDarkMode)}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              fontFamily: "'DM Mono', monospace",
+              fontSize: "11px",
+              color: COLORS.text,
+              letterSpacing: "0.1em",
+              padding: "4px 0",
+              transition: "color 0.2s",
+            }}
+          >
+            {isDarkMode ? "LIGHT MODE" : "DARK MODE"}
+          </button>
         </div>
 
         {/* Mobile hamburger */}
@@ -257,6 +267,23 @@ export function MinimalistLayout() {
               {l.label.toUpperCase()}
             </button>
           ))}
+          <button
+            onClick={() => { setIsDarkMode(!isDarkMode); setMobileOpen(false); }}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              fontFamily: "'DM Mono', monospace",
+              fontSize: "13px",
+              color: COLORS.text,
+              letterSpacing: "0.1em",
+              textAlign: "left",
+              padding: "8px 0",
+              borderBottom: `1px solid ${COLORS.border}`,
+            }}
+          >
+            {isDarkMode ? "LIGHT MODE" : "DARK MODE"}
+          </button>
         </div>
       )}
 
@@ -294,7 +321,7 @@ export function MinimalistLayout() {
         </RevealDiv>
         <RevealDiv delay={160}>
           <p style={{ fontSize: "15px", color: COLORS.muted, marginBottom: "12px", maxWidth: "520px", lineHeight: 1.7 }}>
-            We build digital products that look sharp, perform fast, and grow businesses.
+           We Don't jusr Build Websites_ We Build Digital Power.
           </p>
           <p style={{ fontSize: "12px", color: COLORS.muted, marginBottom: "48px", maxWidth: "480px", lineHeight: 1.7 }}>
             Web development, design, marketing, and business — one team, end to end.
@@ -356,10 +383,10 @@ export function MinimalistLayout() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "64px" }}>
           <RevealDiv delay={80}>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "32px", fontWeight: 400, color: COLORS.text, margin: "0 0 24px", lineHeight: 1.3 }}>
-              Built to build<br />the right things.
+              Glaze is a web and software development agency led by Asmit Singh and some more members. <br />
             </h2>
             <p style={{ color: COLORS.muted, lineHeight: 1.8, fontSize: "13px", marginBottom: "16px" }}>
-              Glaze is a small, sharp digital agency. We don't do bloated retainers or long handoffs — we work fast, we work well, and we care about the output.
+              We built fast, scalable, and modern digital products designed to perform and grow with your business.
             </p>
             <p style={{ color: COLORS.muted, lineHeight: 1.8, fontSize: "13px" }}>
               Four people. Four disciplines. One goal: make your digital presence worth looking at.
@@ -382,22 +409,25 @@ export function MinimalistLayout() {
                 </li>
               ))}
             </ul>
-            <div
+            <button
+              onClick={() => scrollTo("contact")}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
                 padding: "6px 14px",
-                background: "#edf3ef",
-                border: `1px solid #c5d9ca`,
+                background: isDarkMode ? `${COLORS.accent}20` : "#edf3ef",
+                border: `1px solid ${isDarkMode ? COLORS.accent : "#c5d9ca"}`,
                 borderRadius: "3px",
+                cursor: "pointer",
+                transition: "background 0.2s, color 0.2s",
               }}
             >
               <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: COLORS.accent, display: "inline-block" }} />
               <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "11px", color: COLORS.accent, letterSpacing: "0.1em" }}>
                 OPEN FOR NEW PROJECTS
               </span>
-            </div>
+            </button>
           </RevealDiv>
         </div>
       </section>
@@ -693,9 +723,9 @@ export function MinimalistLayout() {
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "40px" }}>
                 {[
-                  { label: "GitHub", url: "https://github.com" },
-                  { label: "LinkedIn", url: "https://linkedin.com" },
-                  { label: "Email — hello@glaze.agency", url: "mailto:hello@glaze.agency" },
+                  { label: "GitHub", url: "https://github.com/asmitsingh000" },
+                  { label: "LinkedIn", url: "https://www.linkedin.com/in/asmit-singh-1a76133b0/" },
+                  { label: "Email — glaze0999@gmail.com", url: "mailto:glaze0999@gmail.com" },
                 ].map(link => (
                   <a
                     key={link.label}
@@ -739,7 +769,7 @@ export function MinimalistLayout() {
       {/* ── FOOTER ── */}
       <footer style={{ borderTop: `1px solid ${COLORS.border}`, padding: "32px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
         <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "11px", color: COLORS.muted, letterSpacing: "0.08em" }}>
-          © 2025 Glaze — All rights reserved
+          © 2026 Glaze Digital Agency — All rights reserved
         </span>
         <button
           onClick={switchMode}

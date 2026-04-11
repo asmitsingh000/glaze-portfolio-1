@@ -278,6 +278,9 @@ export function StylePicker() {
         </h1>
         <p style={{ color: "#6b8870", fontFamily: "'Crimson Pro', serif", fontSize: "18px", marginTop: "10px" }}>
           Digital Agency · Web · Design · Marketing · Growth
+        </p><br />
+         <p style={{ color: "#6b8870", fontFamily: "'Crimson Pro', serif", fontSize: "18px", marginTop: "10px" }}>
+          Building Digital Products That Perform
         </p>
       </div>
 
@@ -539,7 +542,7 @@ export function StylePicker() {
         style={{
           marginTop: "56px",
           fontFamily: "'DM Mono', monospace",
-          fontSize: "11px",
+          fontSize: "15px",
           color: "#2a4a30",
           letterSpacing: "0.15em",
           textAlign: "center",
