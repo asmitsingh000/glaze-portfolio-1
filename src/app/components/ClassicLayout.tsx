@@ -14,6 +14,7 @@ import {
   Globe,
   Zap,
   Cpu,
+  ShieldCheck,
   Rocket,
   Mail,
   ExternalLink
