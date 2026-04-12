@@ -124,7 +124,7 @@ const projects = [
     github: "https://xyz-school.vercel.app/",
   },
   {
-    title: "Kalyan — Brand Identity & Web",
+    title: "Clinic's — Brand Identity & Web",
     desc: "End-to-end brand refresh: logo system, color language, typography, and a new marketing website for a dental clinic.",
     stack: ["Figma", "Framer", "Brand Design", "Copywriting", "MongoDB", "Automation", "Admin Panel" ],
     year: "2025",
@@ -153,10 +153,10 @@ const projects = [
 ];
 
 const team = [
-  { name: "Asmit Singh",  role: "Web Development",  desc: "Architects and builds every digital product. From landing pages to full-stack platforms — if it runs in a browser, this is his domain.", initials: "AS", color: "#50C878" },
-  { name: "Aanand Mehta",    role: "Design & Creative", desc: "The visual mind of Glaze. Brand identity, UI systems, motion, and the visual language that makes clients' work impossible to ignore.", initials: "AM", color: "#D4AF37" },
-  { name: "Santanu Deo",   role: "Marketing & Growth", desc: "Puts the right work in front of the right people. SEO, content strategy, paid campaigns — growth is the north star.", initials: "SD", color: "#6ba8d4" },
-  { name: "Kishan Sha",   role: "Business & Deals",  desc: "The closer. Client relationships, proposals, partnerships — turning conversations into contracts and contracts into long-term trust.", initials: "KS", color: "#d4a050" },
+  { name: "Asmit Singh",  role: "Web Development",  desc: "Architects and builds digital products.", initials: "AS", color: "#50C878" },
+  { name: "Aanand Mehta",    role: "Design & Creative", desc: "The visual mind of Glaze.", initials: "AM", color: "#D4AF37" },
+  { name: "Santanu Deo",   role: "Marketing & Growth", desc: "Drives reach and optimization.", initials: "SD", color: "#6ba8d4" },
+  { name: "Kishan Sha",   role: "Business & Deals",  desc: "Handles partnerships and strategy.", initials: "KS", color: "#d4a050" },
 ];
 
 const services = [
@@ -277,32 +277,30 @@ export function ClassicLayout() {
         <div style={{ position: "relative", textAlign: "center", zIndex: 2 }}>
           <RevealDiv delay={0}>
             <p style={{ fontFamily: "'Cinzel', serif", fontSize: "11px", color: C.accent, letterSpacing: "0.4em", marginBottom: "32px" }}>
-              DIGITAL AGENCY
+              ASMIT SINGH — FOUNDER OF GLAZE
             </p>
           </RevealDiv>
           <RevealDiv delay={100}>
-            <h1 style={{ fontFamily: "'Cinzel', serif", fontSize: "clamp(52px, 10vw, 96px)", fontWeight: 400, color: C.gold, margin: "0 0 16px", letterSpacing: "0.2em", lineHeight: 1.1, textShadow: "0 0 40px rgba(212,175,55,0.2)" }}>
-              GLAZE
+            <h1 style={{ fontFamily: "'Cinzel', serif", fontSize: "clamp(40px, 6vw, 64px)", fontWeight: 400, color: C.gold, margin: "0 0 16px", letterSpacing: "0.1em", lineHeight: 1.2, textShadow: "0 0 40px rgba(212,175,55,0.2)" }}>
+              I HELP BUSINESSES BUILD FAST,<br />MODERN & HIGH-CONVERTING WEBSITES
             </h1>
           </RevealDiv>
           <RevealDiv delay={200}>
-            <p style={{ fontFamily: "'Cinzel', serif", fontSize: "clamp(13px, 2vw, 16px)", color: C.accent, letterSpacing: "0.3em", margin: "0 0 20px" }}>
-              WEB · DESIGN · MARKETING · GROWTH
+            <p style={{ fontFamily: "'Crimson Pro', serif", fontSize: "20px", color: C.muted, margin: "0 0 12px", maxWidth: "700px" }}>
+              I'm Asmit Singh — a web & software developer from Nepal.
             </p>
-          </RevealDiv>
-          <RevealDiv delay={300}>
-            <p style={{ fontFamily: "'Crimson Pro', serif", fontSize: "20px", color: "#8aaa8e", fontStyle: "italic", margin: "0 0 48px" }}>
-              "We build what moves people."
+            <p style={{ fontFamily: "'Crimson Pro', serif", fontSize: "18px", color: C.accent, letterSpacing: "0.1em", margin: "0 0 48px" }}>
+              FOUNDER OF GLAZE · AVAILABLE FOR FREELANCE PROJECTS
             </p>
           </RevealDiv>
           <RevealDiv delay={400}>
             <button
-              onClick={() => scrollTo("about")}
+              onClick={() => scrollTo("showcase")}
               style={{ padding: "14px 36px", border: `1px solid ${C.gold}`, background: "transparent", color: C.gold, fontFamily: "'Cinzel', serif", fontSize: "12px", letterSpacing: "0.2em", cursor: "pointer", borderRadius: "2px", transition: "background 0.3s, color 0.3s" }}
               onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = C.gold; (e.currentTarget as HTMLButtonElement).style.color = C.bg; }}
               onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; (e.currentTarget as HTMLButtonElement).style.color = C.gold; }}
             >
-              EXPLORE GLAZE ↓
+              VIEW MY WORK ↓
             </button>
           </RevealDiv>
         </div>
@@ -320,17 +318,17 @@ export function ClassicLayout() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "80px" }}>
           <RevealDiv delay={80}>
             <h2 style={{ fontFamily: "'Cinzel', serif", fontSize: "28px", fontWeight: 400, color: C.text, marginBottom: "32px", letterSpacing: "0.05em", lineHeight: 1.4 }}>
-              A Small Agency.<br />A Sharp Team.
+              Asmit Singh —<br />Developer & Founder
             </h2>
             <p style={{ fontSize: "18px", lineHeight: 1.8, color: C.muted, marginBottom: "20px" }}>
-              Glaze is a four-person digital agency covering web development, design, marketing, and business. We keep the team small so every project gets full attention.
+              I'm Asmit Singh, a web and software developer based in Nepal and a Computer Engineering student.
+            </p>
+            <p style={{ fontSize: "18px", lineHeight: 1.8, color: C.muted, marginBottom: "20px" }}>
+              I build modern, responsive, and performance-focused websites that help businesses grow online.
             </p>
             <p style={{ fontSize: "18px", lineHeight: 1.8, color: C.muted, marginBottom: "32px" }}>
-              No bloated processes. No endless handoffs. Just four people who are very good at what they do — working together to build something worth showing.
+              I'm also the founder of Glaze, where I collaborate with a small team to deliver complete digital solutions.
             </p>
-            <blockquote style={{ borderLeft: `2px solid ${C.gold}`, paddingLeft: "24px", margin: "0", fontStyle: "italic", color: C.gold, fontSize: "22px", lineHeight: 1.5 }}>
-              "Built to build the right things."
-            </blockquote>
           </RevealDiv>
           <RevealDiv delay={180}>
             <p style={{ fontFamily: "'Cinzel', serif", fontSize: "10px", color: C.accent, letterSpacing: "0.3em", marginBottom: "24px" }}>
@@ -363,11 +361,38 @@ export function ClassicLayout() {
 
       <div style={{ width: "100%", height: "1px", background: C.border }} />
 
+      {/* ── WHY CHOOSE ME ── */}
+      <section id="why" style={{ padding: "100px 48px", maxWidth: "1100px", margin: "0 auto" }}>
+        <RevealDiv>
+          <p style={{ fontFamily: "'Cinzel', serif", fontSize: "10px", color: C.accent, letterSpacing: "0.35em", marginBottom: "56px" }}>
+            II — WHY CHOOSE ME
+          </p>
+        </RevealDiv>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "40px" }}>
+          {[
+            { tag: "01", title: "Fast delivery", desc: "Your project moved from concept to reality in record time." },
+            { tag: "02", title: "Clean modern design", desc: "Aesthetics that match your brand's quality and vision." },
+            { tag: "03", title: "Clear communication", desc: "Direct updates. No technical jargon, just results." },
+            { tag: "04", title: "Focus on results", desc: "I build websites that actually convert and grow your business." },
+          ].map((item, i) => (
+            <RevealDiv key={item.title} delay={i * 100}>
+              <div style={{ borderLeft: `1px solid ${C.border}`, paddingLeft: "24px" }}>
+                <span style={{ fontFamily: "'Cinzel', serif", fontSize: "12px", color: C.gold, display: "block", marginBottom: "12px" }}>{item.tag}</span>
+                <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "16px", fontWeight: 400, color: C.text, marginBottom: "12px" }}>{item.title.toUpperCase()}</h3>
+                <p style={{ fontSize: "15px", color: C.muted, lineHeight: 1.6 }}>{item.desc}</p>
+              </div>
+            </RevealDiv>
+          ))}
+        </div>
+      </section>
+
+      <div style={{ width: "100%", height: "1px", background: C.border }} />
+
       {/* ── SERVICES ── */}
       <section id="services" style={{ padding: "120px 48px", maxWidth: "1100px", margin: "0 auto" }}>
         <RevealDiv>
           <p style={{ fontFamily: "'Cinzel', serif", fontSize: "10px", color: C.accent, letterSpacing: "0.35em", marginBottom: "56px" }}>
-            II — WHAT WE DO
+            III — WHAT WE DO
           </p>
         </RevealDiv>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "28px" }}>
@@ -400,7 +425,7 @@ export function ClassicLayout() {
       <section id="showcase" style={{ padding: "120px 48px", maxWidth: "1200px", margin: "0 auto" }}>
         <RevealDiv>
           <p style={{ fontFamily: "'Cinzel', serif", fontSize: "10px", color: C.accent, letterSpacing: "0.35em", marginBottom: "56px" }}>
-            III — SELECTED WORK
+            IV — SELECTED WORK
           </p>
         </RevealDiv>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "28px" }}>
@@ -455,10 +480,10 @@ export function ClassicLayout() {
       <section id="team" style={{ padding: "120px 48px", maxWidth: "1100px", margin: "0 auto" }}>
         <RevealDiv>
           <p style={{ fontFamily: "'Cinzel', serif", fontSize: "10px", color: C.accent, letterSpacing: "0.35em", marginBottom: "20px" }}>
-            IV — THE TEAM
+            V — WORKING WITH A TEAM
           </p>
           <h2 style={{ fontFamily: "'Cinzel', serif", fontSize: "clamp(24px, 4vw, 36px)", fontWeight: 400, color: C.text, margin: "0 0 56px", letterSpacing: "0.08em" }}>
-            FOUR PEOPLE. EVERY ANGLE COVERED.
+            COLLABORATING FOR BETTER RESULTS.
           </h2>
         </RevealDiv>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "24px" }}>
@@ -505,7 +530,7 @@ export function ClassicLayout() {
       <section id="contact" style={{ padding: "120px 48px", maxWidth: "1100px", margin: "0 auto" }}>
         <RevealDiv>
           <p style={{ fontFamily: "'Cinzel', serif", fontSize: "10px", color: C.accent, letterSpacing: "0.35em", marginBottom: "20px" }}>
-            V — WORK WITH US
+            VI — WORK WITH US
           </p>
           <p style={{ fontFamily: "'Crimson Pro', serif", fontStyle: "italic", fontSize: "22px", color: C.muted, margin: "0 0 56px" }}>
             "Tell us what you're building. We'll take it from there."

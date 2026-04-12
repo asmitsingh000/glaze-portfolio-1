@@ -41,7 +41,7 @@ function RevealDiv({ children, delay = 0, style = {} }: { children: React.ReactN
 }
 
 const projects = [
-  {
+   {
     title: "School — Academic Institution Website",
     desc: "A clean, performant website built for a school. Covers academics, admissions, events, and institutional info with a polished modern design.",
     stack: ["Next.js", "TypeScript", "Vercel", "Tailwind CSS", "PostgreSQL", "Prisma", "Admin Panel", "Automation", "Email Automation"],
@@ -51,7 +51,7 @@ const projects = [
     github: "https://xyz-school.vercel.app/",
   },
   {
-    title: "Kalyan — Brand Identity & Web",
+    title: "Clinic's — Brand Identity & Web",
     desc: "End-to-end brand refresh: logo system, color language, typography, and a new marketing website for a dental clinic.",
     stack: ["Figma", "Framer", "Brand Design", "Copywriting", "MongoDB", "Automation", "Admin Panel" ],
     year: "2025",
@@ -87,34 +87,10 @@ const services = [
 ];
 
 const team = [
-  {
-    name: "Asmit Singh",
-    role: "Web Development",
-    desc: "Builds the digital products — from landing pages to full-stack platforms. Handles all things code, architecture, and performance.",
-    initials: "AS",
-    color: "#2d5a3d",
-  },
-  {
-    name: "Aanand Mehta",
-    role: "Design & Creative",
-    desc: "Shapes how everything looks and feels. Brand identity, UI systems, motion — the visual soul of every Glaze project.",
-    initials: "AM",
-    color: "#5a3d6b",
-  },
-  {
-    name: "Santanu Deo",
-    role: "Marketing & Growth",
-    desc: "Makes sure the right people see the right work. SEO, content, paid campaigns, and strategy — growth is the goal.",
-    initials: "SD",
-    color: "#3d4f6b",
-  },
-  {
-    name: "Kishan Sha",
-    role: "Business & Deals",
-    desc: "The closer. Client relationships, proposals, partnerships — making sure opportunities turn into lasting work.",
-    initials: "KS",
-    color: "#6b4a2d",
-  },
+  { name: "Asmit Singh",  role: "Web Development",  desc: "Builds digital products with focus on performance.", initials: "AS", color: "#2d5a3d" },
+  { name: "Aanand Mehta",    role: "Design & Creative", desc: "Shapes the visual identity and soul.", initials: "AM", color: "#5a3d6b" },
+  { name: "Santanu Deo",   role: "Marketing & Growth", desc: "Drives reach and strategic growth.", initials: "SD", color: "#3d4f6b" },
+  { name: "Kishan Sha",   role: "Business & Deals",  desc: "Handles relationships and opportunities.", initials: "KS", color: "#6b4a2d" },
 ];
 
 export function MinimalistLayout() {
@@ -301,30 +277,30 @@ export function MinimalistLayout() {
       >
         <RevealDiv delay={0}>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "11px", color: COLORS.accent, letterSpacing: "0.25em", marginBottom: "24px" }}>
-            DIGITAL AGENCY · WEB · DESIGN · MARKETING
+            ASMIT SINGH · FOUNDER OF GLAZE
           </p>
         </RevealDiv>
         <RevealDiv delay={80}>
           <h1
             style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(60px, 10vw, 112px)",
+              fontSize: "clamp(48px, 8vw, 84px)",
               fontWeight: 400,
               color: COLORS.text,
               margin: "0 0 24px",
-              lineHeight: 1.0,
+              lineHeight: 1.1,
               letterSpacing: "-0.01em",
             }}
           >
-            Glaze.
+            I Help Businesses Build Fast, Modern & High-Converting Websites
           </h1>
         </RevealDiv>
         <RevealDiv delay={160}>
-          <p style={{ fontSize: "15px", color: COLORS.muted, marginBottom: "12px", maxWidth: "520px", lineHeight: 1.7 }}>
-           We Don't jusr Build Websites_ We Build Digital Power.
+          <p style={{ fontSize: "16px", color: COLORS.muted, marginBottom: "12px", maxWidth: "600px", lineHeight: 1.7 }}>
+            I'm Asmit Singh — a web & software developer from Nepal.
           </p>
-          <p style={{ fontSize: "12px", color: COLORS.muted, marginBottom: "48px", maxWidth: "480px", lineHeight: 1.7 }}>
-            Web development, design, marketing, and business — one team, end to end.
+          <p style={{ fontSize: "13px", color: COLORS.accent, marginBottom: "48px", maxWidth: "480px", lineHeight: 1.7, fontFamily: "'DM Mono', monospace" }}>
+            Founder of Glaze. Available for freelance projects.
           </p>
         </RevealDiv>
         <RevealDiv delay={240}>
@@ -383,13 +359,17 @@ export function MinimalistLayout() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "64px" }}>
           <RevealDiv delay={80}>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "32px", fontWeight: 400, color: COLORS.text, margin: "0 0 24px", lineHeight: 1.3 }}>
-              Glaze is a web and software development agency led by Asmit Singh and some more members. <br />
+              Asmit Singh <br />
+              <span style={{ fontSize: "20px", color: COLORS.accent }}>Developer & Founder</span>
             </h2>
             <p style={{ color: COLORS.muted, lineHeight: 1.8, fontSize: "13px", marginBottom: "16px" }}>
-              We built fast, scalable, and modern digital products designed to perform and grow with your business.
+              I'm Asmit Singh, a web and software developer based in Nepal and a Computer Engineering student.
+            </p>
+            <p style={{ color: COLORS.muted, lineHeight: 1.8, fontSize: "13px", marginBottom: "16px" }}>
+              I build modern, responsive, and performance-focused websites that help businesses grow online.
             </p>
             <p style={{ color: COLORS.muted, lineHeight: 1.8, fontSize: "13px" }}>
-              Four people. Four disciplines. One goal: make your digital presence worth looking at.
+              I'm also the founder of Glaze, where I collaborate with a small team to deliver complete digital solutions.
             </p>
           </RevealDiv>
           <RevealDiv delay={160}>
@@ -434,11 +414,37 @@ export function MinimalistLayout() {
 
       <div style={{ width: "100%", height: "1px", background: COLORS.border }} />
 
+      {/* ── WHY CHOOSE ME ── */}
+      <section id="why" style={{ padding: "100px 40px", maxWidth: "900px", margin: "0 auto" }}>
+        <RevealDiv>
+          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", color: COLORS.accent, letterSpacing: "0.25em", marginBottom: "48px" }}>
+            02 — WHY CHOOSE ME
+          </p>
+        </RevealDiv>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "32px" }}>
+          {[
+            { title: "Fast delivery", desc: "Swift execution from idea to launch." },
+            { title: "Clean modern design", desc: "Premium aesthetics that stand out." },
+            { title: "Clear communication", desc: "Active updates and full transparency." },
+            { title: "Focus on results", desc: "Built for growth and conversions." },
+          ].map((item, i) => (
+            <RevealDiv key={item.title} delay={i * 80}>
+              <div style={{ borderLeft: `1px solid ${COLORS.accent}`, paddingLeft: "16px" }}>
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "16px", color: COLORS.text, margin: "0 0 8px", fontWeight: 500 }}>{item.title}</h3>
+                <p style={{ fontSize: "12px", color: COLORS.muted, lineHeight: 1.6 }}>{item.desc}</p>
+              </div>
+            </RevealDiv>
+          ))}
+        </div>
+      </section>
+
+      <div style={{ width: "100%", height: "1px", background: COLORS.border }} />
+
       {/* ── SERVICES ── */}
       <section id="services" style={{ padding: "100px 40px", maxWidth: "1100px", margin: "0 auto" }}>
         <RevealDiv>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", color: COLORS.accent, letterSpacing: "0.25em", marginBottom: "20px" }}>
-            02 — SERVICES
+            03 — SERVICES
           </p>
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "36px", fontWeight: 400, color: COLORS.text, margin: "0 0 56px", lineHeight: 1.3 }}>
             What we do.
@@ -481,7 +487,7 @@ export function MinimalistLayout() {
       <section id="showcase" style={{ padding: "100px 40px", maxWidth: "1100px", margin: "0 auto" }}>
         <RevealDiv>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", color: COLORS.accent, letterSpacing: "0.25em", marginBottom: "20px" }}>
-            03 — SELECTED WORK
+            04 — SELECTED WORK
           </p>
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "36px", fontWeight: 400, color: COLORS.text, margin: "0 0 56px", lineHeight: 1.3 }}>
             Things we've built.
@@ -564,10 +570,10 @@ export function MinimalistLayout() {
       <section id="team" style={{ padding: "100px 40px", maxWidth: "1100px", margin: "0 auto" }}>
         <RevealDiv>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", color: COLORS.accent, letterSpacing: "0.25em", marginBottom: "20px" }}>
-            04 — THE TEAM
+            05 — WORKING WITH A TEAM
           </p>
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "36px", fontWeight: 400, color: COLORS.text, margin: "0 0 56px", lineHeight: 1.3 }}>
-            Four people. Every angle covered.
+            Collaborating for better results.
           </h2>
         </RevealDiv>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "24px" }}>
@@ -623,7 +629,7 @@ export function MinimalistLayout() {
       <section id="contact" style={{ padding: "100px 40px", maxWidth: "900px", margin: "0 auto" }}>
         <RevealDiv>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", color: COLORS.accent, letterSpacing: "0.25em", marginBottom: "20px" }}>
-            05 — CONTACT
+            06 — CONTACT
           </p>
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "36px", fontWeight: 400, color: COLORS.text, margin: "0 0 12px", lineHeight: 1.3 }}>
             Let's work together.
