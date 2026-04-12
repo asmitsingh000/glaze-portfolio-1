@@ -15,8 +15,8 @@ import {
   Zap,
   Cpu,
   Rocket,
-  Github,
-  Linkedin,
+  GitHub,
+  LinkedIn,
   Mail,
   ExternalLink
 } from "lucide-react";
@@ -675,8 +675,8 @@ export function ClassicLayout() {
             <p style={{ fontFamily: "'Cinzel', serif", fontSize: "11px", color: C.gold, letterSpacing: "0.25em", marginBottom: "28px" }}>CHANNELS</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0", marginBottom: "48px" }}>
               {[
-                  { label: "GitHub", url: "https://github.com/asmitsingh000", icon: <Github size={16} /> },
-                  { label: "LinkedIn", url: "https://www.linkedin.com/in/asmit-singh-1a76133b0/", icon: <Linkedin size={16} /> },
+                  { label: "GitHub", url: "https://github.com/asmitsingh000", icon: <GitHub size={16} /> },
+                  { label: "LinkedIn", url: "https://www.linkedin.com/in/asmit-singh-1a76133b0/", icon: <LinkedIn size={16} /> },
                   { label: "Email — glaze0999@gmail.com", url: "mailto:glaze0999@gmail.com", icon: <Mail size={16} /> },
               ].map(link => (
                 <a
