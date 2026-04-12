@@ -16,11 +16,12 @@ import {
   Cpu,
   ShieldCheck,
   Rocket,
-  GitHub,
-  LinkedIn,
   Mail,
   ExternalLink
 } from "lucide-react";
+
+import GitHub from "@mui/icons-material/GitHub";
+import LinkedIn from "@mui/icons-material/LinkedIn";
 
 // Helper for tech icons
 const getTechIcon = (tech: string) => {
@@ -802,8 +803,8 @@ export function MinimalistLayout() {
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "40px" }}>
                 {[
-                  { label: "GitHub", url: "https://github.com/asmitsingh000", icon: <GitHub size={16} /> },
-                  { label: "LinkedIn", url: "https://www.linkedin.com/in/asmit-singh-1a76133b0/", icon: <LinkedIn size={16} /> },
+                  { label: "GitHub", url: "https://github.com/asmitsingh000", icon: <GitHub sx={{ fontSize: 16 }} /> },
+                  { label: "LinkedIn", url: "https://www.linkedin.com/in/asmit-singh-1a76133b0/", icon: <LinkedIn sx={{ fontSize: 16 }} /> },
                   { label: "Email — glaze0999@gmail.com", url: "mailto:glaze0999@gmail.com", icon: <Mail size={16} /> },
                 ].map(link => (
                   <a
