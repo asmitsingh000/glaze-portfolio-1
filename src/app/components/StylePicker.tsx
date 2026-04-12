@@ -235,10 +235,17 @@ export function StylePicker() {
   const router = useRouter();
   const [hoveredSupreme, setHoveredSupreme] = useState(false);
 
+  const [isMinimalistDark, setIsMinimalistDark] = useState(false);
+
   useEffect(() => {
-    const saved = localStorage.getItem("asmit-style-mode");
-    if (saved === "minimalist") router.push("/minimalist");
-    else if (saved === "classic") router.push("/classic");
+    // Check main layout mode
+    const savedMode = localStorage.getItem("asmit-style-mode");
+    if (savedMode === "minimalist") router.push("/minimalist");
+    else if (savedMode === "classic") router.push("/classic");
+
+    // Check minimalist dark mode state
+    const isDark = localStorage.getItem("asmit-minimalist-dark");
+    if (isDark === "true") setIsMinimalistDark(true);
   }, [router]);
 
   const selectMode = (mode: "minimalist" | "classic") => {
@@ -299,8 +306,8 @@ export function StylePicker() {
         <button
           onClick={() => selectMode("minimalist")}
           style={{
-            background: "#fafaf9",
-            border: "1px solid #e0ddd8",
+            background: isMinimalistDark ? "#121212" : "#fafaf9",
+            border: `1px solid ${isMinimalistDark ? "#333333" : "#e0ddd8"}`,
             borderRadius: "12px",
             width: "300px",
             padding: "0",
@@ -311,7 +318,9 @@ export function StylePicker() {
           }}
           onMouseEnter={e => {
             (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-6px)";
-            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 20px 40px rgba(0,0,0,0.3)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = isMinimalistDark 
+              ? "0 20px 40px rgba(74,222,128,0.1)" 
+              : "0 20px 40px rgba(0,0,0,0.3)";
           }}
           onMouseLeave={e => {
             (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
@@ -320,13 +329,13 @@ export function StylePicker() {
         >
           <div
             style={{
-              background: "#fafaf9",
+              background: isMinimalistDark ? "#121212" : "#fafaf9",
               height: "180px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              borderBottom: "1px solid #e0ddd8",
+              borderBottom: `1px solid ${isMinimalistDark ? "#333333" : "#e0ddd8"}`,
               gap: "8px",
             }}
           >
@@ -334,23 +343,23 @@ export function StylePicker() {
               style={{
                 fontFamily: "'Playfair Display', serif",
                 fontSize: "38px",
-                color: "#1a1a18",
+                color: isMinimalistDark ? "#f0f0f0" : "#1a1a18",
                 fontWeight: 400,
                 letterSpacing: "0.06em",
               }}
             >
               Glaze
             </span>
-            <div style={{ width: "60px", height: "1px", background: "#2d5a3d" }} />
+            <div style={{ width: "60px", height: "1px", background: isMinimalistDark ? "#4ade80" : "#2d5a3d" }} />
           </div>
           <div style={{ padding: "24px 28px 28px" }}>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", color: "#6b6860", letterSpacing: "0.2em", margin: "0 0 6px" }}>
-              MINIMALIST
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", color: isMinimalistDark ? "#4ade80" : "#6b6860", letterSpacing: "0.2em", margin: "0 0 6px" }}>
+              MINIMALIST {isMinimalistDark && "· DARK"}
             </p>
-            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: "#1a1a18", margin: "0 0 10px" }}>
+            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: isMinimalistDark ? "#f0f0f0" : "#1a1a18", margin: "0 0 10px" }}>
               Signal over noise.
             </p>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "12px", color: "#6b6860", margin: 0, lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "12px", color: isMinimalistDark ? "#a0a0a0" : "#6b6860", margin: 0, lineHeight: 1.6 }}>
               Clean layout. Fast. Content first.
             </p>
             <div
@@ -358,8 +367,8 @@ export function StylePicker() {
                 marginTop: "18px",
                 display: "inline-block",
                 padding: "7px 16px",
-                border: "1px solid #2d5a3d",
-                color: "#2d5a3d",
+                border: `1px solid ${isMinimalistDark ? "#4ade80" : "#2d5a3d"}`,
+                color: isMinimalistDark ? "#4ade80" : "#2d5a3d",
                 fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 letterSpacing: "0.12em",

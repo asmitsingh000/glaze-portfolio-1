@@ -2,6 +2,20 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { 
+  Code2, 
+  Server, 
+  Settings, 
+  Layout, 
+  Database, 
+  GitBranch, 
+  Terminal, 
+  PenTool, 
+  Globe,
+  Zap,
+  Cpu,
+  Rocket
+} from "lucide-react";
 
 const C = {
   bg: "#0a1a0f",
@@ -152,18 +166,22 @@ const projects = [
   },
 ];
 
-const team = [
-  { name: "Asmit Singh",  role: "Web Development",  desc: "Architects and builds digital products.", initials: "AS", color: "#50C878" },
-  { name: "Aanand Mehta",    role: "Design & Creative", desc: "The visual mind of Glaze.", initials: "AM", color: "#D4AF37" },
-  { name: "Santanu Deo",   role: "Marketing & Growth", desc: "Drives reach and optimization.", initials: "SD", color: "#6ba8d4" },
-  { name: "Kishan Sha",   role: "Business & Deals",  desc: "Handles partnerships and strategy.", initials: "KS", color: "#d4a050" },
-];
-
-const services = [
-  { label: "Web Development",   tags: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "REST APIs", "Tailwind CSS"] },
-  { label: "Design & Creative", tags: ["Figma", "UI/UX", "Brand Identity", "Motion Design", "Visual Systems", "Prototyping"] },
-  { label: "Marketing & Growth", tags: ["SEO", "Social Media", "Content Strategy", "Paid Ads", "Email Marketing", "Analytics"] },
-  { label: "Business & Deals",  tags: ["Client Relations", "Proposals", "Partnerships", "Strategy", "Negotiation", "Growth Planning"] },
+const skills = [
+  { 
+    label: "Frontend", 
+    icon: <Layout className="w-5 h-5" />, 
+    tags: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS"] 
+  },
+  { 
+    label: "Backend", 
+    icon: <Server className="w-5 h-5" />, 
+    tags: ["Node.js", "APIs"] 
+  },
+  { 
+    label: "Tools", 
+    icon: <Settings className="w-5 h-5" />, 
+    tags: ["Git & GitHub", "Vercel", "Figma (basic)"] 
+  },
 ];
 
 export function ClassicLayout() {
@@ -184,9 +202,10 @@ export function ClassicLayout() {
 
   const navLinks = [
     { label: "About",    id: "about" },
-    { label: "Services", id: "services" },
+    { label: "Skills",   id: "skills" },
     { label: "Work",     id: "showcase" },
-    { label: "Team",     id: "team" },
+    { label: "Glaze",    id: "glaze" },
+    { label: "Why",      id: "why" },
     { label: "Contact",  id: "contact" },
   ];
 
@@ -287,21 +306,31 @@ export function ClassicLayout() {
           </RevealDiv>
           <RevealDiv delay={200}>
             <p style={{ fontFamily: "'Crimson Pro', serif", fontSize: "20px", color: C.muted, margin: "0 0 12px", maxWidth: "700px" }}>
-              I'm Asmit Singh — a web & software developer from Nepal.
+              I'm Asmit Singh — a web & software developer based in Nepal.
             </p>
             <p style={{ fontFamily: "'Crimson Pro', serif", fontSize: "18px", color: C.accent, letterSpacing: "0.1em", margin: "0 0 48px" }}>
-              FOUNDER OF GLAZE · AVAILABLE FOR FREELANCE PROJECTS
+              AVAILABLE FOR FREELANCE PROJECTS
             </p>
           </RevealDiv>
           <RevealDiv delay={400}>
-            <button
-              onClick={() => scrollTo("showcase")}
-              style={{ padding: "14px 36px", border: `1px solid ${C.gold}`, background: "transparent", color: C.gold, fontFamily: "'Cinzel', serif", fontSize: "12px", letterSpacing: "0.2em", cursor: "pointer", borderRadius: "2px", transition: "background 0.3s, color 0.3s" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = C.gold; (e.currentTarget as HTMLButtonElement).style.color = C.bg; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; (e.currentTarget as HTMLButtonElement).style.color = C.gold; }}
-            >
-              VIEW MY WORK ↓
-            </button>
+            <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
+              <button
+                onClick={() => scrollTo("showcase")}
+                style={{ padding: "14px 36px", border: `1px solid ${C.gold}`, background: "transparent", color: C.gold, fontFamily: "'Cinzel', serif", fontSize: "12px", letterSpacing: "0.2em", cursor: "pointer", borderRadius: "2px", transition: "background 0.3s, color 0.3s" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = C.gold; (e.currentTarget as HTMLButtonElement).style.color = C.bg; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; (e.currentTarget as HTMLButtonElement).style.color = C.gold; }}
+              >
+                VIEW MY WORK ↓
+              </button>
+              <button
+                onClick={() => scrollTo("contact")}
+                style={{ padding: "14px 36px", border: `1px solid ${C.muted}`, background: "transparent", color: C.muted, fontFamily: "'Cinzel', serif", fontSize: "12px", letterSpacing: "0.2em", cursor: "pointer", borderRadius: "2px", transition: "border-color 0.3s, color 0.3s" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = C.accent; (e.currentTarget as HTMLButtonElement).style.color = C.accent; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = C.muted; (e.currentTarget as HTMLButtonElement).style.color = C.muted; }}
+              >
+                CONTACT ME
+              </button>
+            </div>
           </RevealDiv>
         </div>
 
@@ -321,13 +350,16 @@ export function ClassicLayout() {
               Asmit Singh —<br />Developer & Founder
             </h2>
             <p style={{ fontSize: "18px", lineHeight: 1.8, color: C.muted, marginBottom: "20px" }}>
-              I'm Asmit Singh, a web and software developer based in Nepal and a Computer Engineering student.
+              I'm Asmit Singh, a web and software developer from Nepal and a Computer Engineering student.
             </p>
             <p style={{ fontSize: "18px", lineHeight: 1.8, color: C.muted, marginBottom: "20px" }}>
-              I build modern, responsive, and performance-focused websites that help businesses grow online.
+              I specialize in building modern, responsive, and performance-focused websites that help businesses grow online.
+            </p>
+            <p style={{ fontSize: "18px", lineHeight: 1.8, color: C.muted, marginBottom: "20px" }}>
+              I focus on clean design, smooth user experience, and real-world results — not just visuals.
             </p>
             <p style={{ fontSize: "18px", lineHeight: 1.8, color: C.muted, marginBottom: "32px" }}>
-              I'm also the founder of Glaze, where I collaborate with a small team to deliver complete digital solutions.
+              I'm also building Glaze, a growing digital agency.
             </p>
           </RevealDiv>
           <RevealDiv delay={180}>
@@ -388,24 +420,27 @@ export function ClassicLayout() {
 
       <div style={{ width: "100%", height: "1px", background: C.border }} />
 
-      {/* ── SERVICES ── */}
-      <section id="services" style={{ padding: "120px 48px", maxWidth: "1100px", margin: "0 auto" }}>
+      {/* ── SKILLS ── */}
+      <section id="skills" style={{ padding: "120px 48px", maxWidth: "1100px", margin: "0 auto" }}>
         <RevealDiv>
           <p style={{ fontFamily: "'Cinzel', serif", fontSize: "10px", color: C.accent, letterSpacing: "0.35em", marginBottom: "56px" }}>
-            III — WHAT WE DO
+            III — SKILLS & EXPERTISE
           </p>
         </RevealDiv>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "28px" }}>
-          {services.map((s, i) => (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "28px" }}>
+          {skills.map((s, i) => (
             <RevealDiv key={s.label} delay={i * 80}>
               <div
                 style={{ padding: "32px 28px", background: C.surface, border: `1px solid ${C.border}`, borderRadius: "3px", transition: "border-color 0.2s" }}
                 onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.borderColor = C.gold}
                 onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.borderColor = C.border}
               >
-                <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "15px", fontWeight: 400, color: C.gold, marginBottom: "24px", letterSpacing: "0.08em", paddingBottom: "16px", borderBottom: `1px solid ${C.border}` }}>
-                  {s.label.toUpperCase()}
-                </h3>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "24px", paddingBottom: "16px", borderBottom: `1px solid ${C.border}` }}>
+                  <div style={{ color: C.gold }}>{s.icon}</div>
+                  <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "15px", fontWeight: 400, color: C.gold, margin: 0, letterSpacing: "0.08em" }}>
+                    {s.label.toUpperCase()}
+                  </h3>
+                </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                   {s.tags.map(tag => (
                     <span key={tag} style={{ padding: "4px 10px", border: `1px solid ${C.border}`, borderRadius: "2px", fontFamily: "'Crimson Pro', serif", fontSize: "14px", color: C.muted }}>
@@ -473,56 +508,55 @@ export function ClassicLayout() {
           ))}
         </div>
       </section>
-
       <div style={{ width: "100%", height: "1px", background: C.border }} />
 
-      {/* ── TEAM ── */}
-      <section id="team" style={{ padding: "120px 48px", maxWidth: "1100px", margin: "0 auto" }}>
+      {/* ── REALM OF GLAZE ── */}
+      <section id="glaze" style={{ padding: "120px 48px", maxWidth: "1100px", margin: "0 auto" }}>
         <RevealDiv>
-          <p style={{ fontFamily: "'Cinzel', serif", fontSize: "10px", color: C.accent, letterSpacing: "0.35em", marginBottom: "20px" }}>
-            V — WORKING WITH A TEAM
+          <p style={{ fontFamily: "'Cinzel', serif", fontSize: "10px", color: C.accent, letterSpacing: "0.35em", marginBottom: "56px" }}>
+            V — PROJECT HIGHLIGHT
           </p>
-          <h2 style={{ fontFamily: "'Cinzel', serif", fontSize: "clamp(24px, 4vw, 36px)", fontWeight: 400, color: C.text, margin: "0 0 56px", letterSpacing: "0.08em" }}>
-            COLLABORATING FOR BETTER RESULTS.
-          </h2>
         </RevealDiv>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "24px" }}>
-          {team.map((member, i) => (
-            <RevealDiv key={member.name} delay={i * 100}>
-              <div
-                style={{ padding: "32px 28px", background: C.surface, border: `1px solid ${C.border}`, borderRadius: "3px", transition: "border-color 0.3s, box-shadow 0.3s" }}
-                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = member.color; (e.currentTarget as HTMLDivElement).style.boxShadow = `0 8px 24px ${member.color}14`; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = C.border; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
-              >
-                {/* Avatar */}
-                <div
-                  style={{
-                    width: "56px", height: "56px", borderRadius: "50%",
-                    background: `${member.color}18`,
-                    border: `1px solid ${member.color}50`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    marginBottom: "24px",
-                  }}
-                >
-                  <span style={{ fontFamily: "'Cinzel', serif", fontSize: "16px", color: member.color, fontWeight: 400 }}>
-                    {member.initials}
-                  </span>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "80px" }}>
+          <RevealDiv delay={80}>
+            <h2 style={{ fontFamily: "'Cinzel', serif", fontSize: "28px", fontWeight: 400, color: C.text, marginBottom: "32px", letterSpacing: "0.05em", lineHeight: 1.4 }}>
+              Realm of Glaze <br />
+              <span style={{ fontSize: "18px", color: C.gold }}>(Ongoing 3D Project)</span>
+            </h2>
+            <p style={{ fontSize: "18px", lineHeight: 1.8, color: C.muted, marginBottom: "20px" }}>
+              Realm of Glaze is an ongoing 3D open-world project I'm currently building using Three.js, React Three Fiber, and Next.js.
+            </p>
+            <p style={{ fontSize: "18px", lineHeight: 1.8, color: C.muted, marginBottom: "20px" }}>
+              It focuses on interactive environments, smooth player movement, and real-time rendering on the web.
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginTop: "32px" }}>
+              {["Three.js", "R3F", "GLSL", "React", "Next.js"].map(tag => (
+                <span key={tag} style={{ padding: "5px 12px", border: `1px solid ${C.accent}`, borderRadius: "2px", color: C.accent, fontSize: "12px", fontFamily: "'Cinzel', serif" }}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </RevealDiv>
+          <RevealDiv delay={180}>
+             <div style={{ position: "relative", width: "100%", height: "300px", background: C.surface, border: `1px solid ${C.border}`, borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                <div style={{ textAlign: "center", color: C.muted }}>
+                  <Cpu size={48} style={{ marginBottom: "16px", opacity: 0.4 }} />
+                  <p style={{ fontFamily: "'Cinzel', serif", fontSize: "12px", letterSpacing: "0.1em" }}>[ 3D PREVIEW ENGINE ]</p>
                 </div>
 
-                <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "16px", fontWeight: 400, color: C.text, margin: "0 0 6px", letterSpacing: "0.05em" }}>
-                  {member.name}
-                </h3>
-                <p style={{ fontFamily: "'Cinzel', serif", fontSize: "9px", color: member.color, letterSpacing: "0.22em", margin: "0 0 16px" }}>
-                  {member.role.toUpperCase()}
-                </p>
-                <p style={{ fontFamily: "'Crimson Pro', serif", fontSize: "16px", color: C.muted, lineHeight: 1.7, margin: 0 }}>
-                  {member.desc}
-                </p>
-              </div>
-            </RevealDiv>
-          ))}
+                {/* 3D VERSION - COMMENTED OUT
+                <div style={{ position: 'absolute', inset: 0 }}>
+                  <Canvas>
+                    <Experience />
+                  </Canvas>
+                </div>
+                */}
+             </div>
+          </RevealDiv>
         </div>
       </section>
+
+      <div style={{ width: "100%", height: "1px", background: C.border }} />
 
       <div style={{ width: "100%", height: "1px", background: C.border }} />
 
@@ -530,10 +564,10 @@ export function ClassicLayout() {
       <section id="contact" style={{ padding: "120px 48px", maxWidth: "1100px", margin: "0 auto" }}>
         <RevealDiv>
           <p style={{ fontFamily: "'Cinzel', serif", fontSize: "10px", color: C.accent, letterSpacing: "0.35em", marginBottom: "20px" }}>
-            VI — WORK WITH US
+            VI — WORK WITH ME
           </p>
           <p style={{ fontFamily: "'Crimson Pro', serif", fontStyle: "italic", fontSize: "22px", color: C.muted, margin: "0 0 56px" }}>
-            "Tell us what you're building. We'll take it from there."
+            "I build websites that actually convert and grow your business."
           </p>
         </RevealDiv>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "64px" }}>

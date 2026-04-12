@@ -2,6 +2,21 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { 
+  Code2, 
+  Server, 
+  Settings, 
+  Layout, 
+  Database, 
+  GitBranch, 
+  Terminal, 
+  PenTool, 
+  Globe,
+  Zap,
+  Cpu,
+  ShieldCheck,
+  Rocket
+} from "lucide-react";
 
 const LIGHT_COLORS = {
   bg: "#fafaf9",
@@ -79,26 +94,40 @@ const projects = [
   },
 ];
 
-const services = [
-  { label: "Web Development", tags: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Prisma", "Tailwind CSS", "REST APIs"] },
-  { label: "Design & Creative", tags: ["Figma", "UI/UX", "Brand Identity", "Motion Design", "Visual Systems", "Prototyping"] },
-  { label: "Marketing & Growth", tags: ["SEO", "Social Media", "Content Strategy", "Paid Ads", "Email Marketing", "Analytics"] },
-  { label: "Business & Deals", tags: ["Client Relations", "Proposals", "Partnerships", "Strategy", "Negotiation", "Growth Planning"] },
-];
-
-const team = [
-  { name: "Asmit Singh",  role: "Web Development",  desc: "Builds digital products with focus on performance.", initials: "AS", color: "#2d5a3d" },
-  { name: "Aanand Mehta",    role: "Design & Creative", desc: "Shapes the visual identity and soul.", initials: "AM", color: "#5a3d6b" },
-  { name: "Santanu Deo",   role: "Marketing & Growth", desc: "Drives reach and strategic growth.", initials: "SD", color: "#3d4f6b" },
-  { name: "Kishan Sha",   role: "Business & Deals",  desc: "Handles relationships and opportunities.", initials: "KS", color: "#6b4a2d" },
+const skills = [
+  { 
+    category: "Frontend", 
+    icon: <Layout className="w-5 h-5" />, 
+    items: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS"] 
+  },
+  { 
+    category: "Backend", 
+    icon: <Server className="w-5 h-5" />, 
+    items: ["Node.js", "APIs"] 
+  },
+  { 
+    category: "Tools", 
+    icon: <Settings className="w-5 h-5" />, 
+    items: ["Git & GitHub", "Vercel", "Figma (basic)"] 
+  },
 ];
 
 export function MinimalistLayout() {
   const router = useRouter();
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Load persistence
+  useEffect(() => {
+    const saved = localStorage.getItem("asmit-minimalist-dark");
+    if (saved === "true") setIsDarkMode(true);
+  }, []);
+
+  // Save persistence
+  useEffect(() => {
+    localStorage.setItem("asmit-minimalist-dark", isDarkMode.toString());
+  }, [isDarkMode]);
 
   const COLORS = isDarkMode ? DARK_COLORS : LIGHT_COLORS;
 
@@ -114,9 +143,10 @@ export function MinimalistLayout() {
 
   const navLinks = [
     { label: "About", id: "about" },
-    { label: "Services", id: "services" },
+    { label: "Skills", id: "skills" },
     { label: "Work", id: "showcase" },
-    { label: "Team", id: "team" },
+    { label: "Glaze", id: "glaze" },
+    { label: "Why", id: "why" },
     { label: "Contact", id: "contact" },
   ];
 
@@ -299,7 +329,7 @@ export function MinimalistLayout() {
           <p style={{ fontSize: "16px", color: COLORS.muted, marginBottom: "12px", maxWidth: "600px", lineHeight: 1.7 }}>
             I'm Asmit Singh — a web & software developer from Nepal.
           </p>
-          <p style={{ fontSize: "13px", color: COLORS.accent, marginBottom: "48px", maxWidth: "480px", lineHeight: 1.7, fontFamily: "'DM Mono', monospace" }}>
+          <p style={{ fontSize: "14px", color: COLORS.accent, marginBottom: "48px", maxWidth: "480px", lineHeight: 1.7, fontFamily: "'DM Mono', monospace" }}>
             Founder of Glaze. Available for freelance projects.
           </p>
         </RevealDiv>
@@ -341,7 +371,7 @@ export function MinimalistLayout() {
               onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = COLORS.accent; (e.currentTarget as HTMLButtonElement).style.color = COLORS.accent; }}
               onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = COLORS.border; (e.currentTarget as HTMLButtonElement).style.color = COLORS.muted; }}
             >
-              GET IN TOUCH
+              CONTACT ME
             </button>
           </div>
         </RevealDiv>
@@ -363,13 +393,13 @@ export function MinimalistLayout() {
               <span style={{ fontSize: "20px", color: COLORS.accent }}>Developer & Founder</span>
             </h2>
             <p style={{ color: COLORS.muted, lineHeight: 1.8, fontSize: "13px", marginBottom: "16px" }}>
-              I'm Asmit Singh, a web and software developer based in Nepal and a Computer Engineering student.
+              I specialization in building modern, responsive, and performance-focused websites that help businesses grow online.
             </p>
             <p style={{ color: COLORS.muted, lineHeight: 1.8, fontSize: "13px", marginBottom: "16px" }}>
-              I build modern, responsive, and performance-focused websites that help businesses grow online.
+              I focus on clean design, smooth user experience, and real-world results — not just visuals.
             </p>
             <p style={{ color: COLORS.muted, lineHeight: 1.8, fontSize: "13px" }}>
-              I'm also the founder of Glaze, where I collaborate with a small team to deliver complete digital solutions.
+              I'm also building Glaze, a growing digital agency.
             </p>
           </RevealDiv>
           <RevealDiv delay={160}>
@@ -423,13 +453,14 @@ export function MinimalistLayout() {
         </RevealDiv>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "32px" }}>
           {[
-            { title: "Fast delivery", desc: "Swift execution from idea to launch." },
-            { title: "Clean modern design", desc: "Premium aesthetics that stand out." },
-            { title: "Clear communication", desc: "Active updates and full transparency." },
-            { title: "Focus on results", desc: "Built for growth and conversions." },
+            { title: "Fast delivery", desc: "Swift execution from idea to launch.", icon: <Zap size={16} /> },
+            { title: "Clean modern design", desc: "Premium aesthetics that stand out.", icon: <PenTool size={16} /> },
+            { title: "Clear communication", desc: "Active updates and full transparency.", icon: <Globe size={16} /> },
+            { title: "Focus on results", desc: "Built for growth and conversions.", icon: <Rocket size={16} /> },
           ].map((item, i) => (
             <RevealDiv key={item.title} delay={i * 80}>
               <div style={{ borderLeft: `1px solid ${COLORS.accent}`, paddingLeft: "16px" }}>
+                <div style={{ color: COLORS.accent, marginBottom: "12px" }}>{item.icon}</div>
                 <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "16px", color: COLORS.text, margin: "0 0 8px", fontWeight: 500 }}>{item.title}</h3>
                 <p style={{ fontSize: "12px", color: COLORS.muted, lineHeight: 1.6 }}>{item.desc}</p>
               </div>
@@ -440,27 +471,30 @@ export function MinimalistLayout() {
 
       <div style={{ width: "100%", height: "1px", background: COLORS.border }} />
 
-      {/* ── SERVICES ── */}
-      <section id="services" style={{ padding: "100px 40px", maxWidth: "1100px", margin: "0 auto" }}>
+      {/* ── SKILLS ── */}
+      <section id="skills" style={{ padding: "100px 40px", maxWidth: "1100px", margin: "0 auto" }}>
         <RevealDiv>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", color: COLORS.accent, letterSpacing: "0.25em", marginBottom: "20px" }}>
-            03 — SERVICES
+            03 — SKILLS
           </p>
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "36px", fontWeight: 400, color: COLORS.text, margin: "0 0 56px", lineHeight: 1.3 }}>
-            What we do.
+            Technical Expertise.
           </h2>
         </RevealDiv>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "32px" }}>
-          {services.map((s, i) => (
-            <RevealDiv key={s.label} delay={i * 80}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "32px" }}>
+          {skills.map((s, i) => (
+            <RevealDiv key={s.category} delay={i * 80}>
               <div style={{ padding: "28px", background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: "4px" }}>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "17px", color: COLORS.text, margin: "0 0 20px", fontWeight: 500 }}>
-                  {s.label}
-                </p>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+                  <div style={{ color: COLORS.accent }}>{s.icon}</div>
+                  <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "18px", color: COLORS.text, margin: 0, fontWeight: 500 }}>
+                    {s.category}
+                  </p>
+                </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
-                  {s.tags.map(tag => (
+                  {s.items.map(item => (
                     <span
-                      key={tag}
+                      key={item}
                       style={{
                         padding: "4px 10px",
                         border: `1px solid ${COLORS.border}`,
@@ -471,7 +505,7 @@ export function MinimalistLayout() {
                         background: COLORS.bg,
                       }}
                     >
-                      {tag}
+                      {item}
                     </span>
                   ))}
                 </div>
@@ -566,60 +600,55 @@ export function MinimalistLayout() {
 
       <div style={{ width: "100%", height: "1px", background: COLORS.border }} />
 
-      {/* ── TEAM ── */}
-      <section id="team" style={{ padding: "100px 40px", maxWidth: "1100px", margin: "0 auto" }}>
+      {/* ── REALM OF GLAZE ── */}
+      <section id="glaze" style={{ padding: "100px 40px", maxWidth: "900px", margin: "0 auto" }}>
         <RevealDiv>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", color: COLORS.accent, letterSpacing: "0.25em", marginBottom: "20px" }}>
-            05 — WORKING WITH A TEAM
+            05 — PROJECT HIGHLIGHT
           </p>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "36px", fontWeight: 400, color: COLORS.text, margin: "0 0 56px", lineHeight: 1.3 }}>
-            Collaborating for better results.
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "36px", fontWeight: 400, color: COLORS.text, margin: "0 0 32px", lineHeight: 1.3 }}>
+            Realm of Glaze (Ongoing Project)
           </h2>
         </RevealDiv>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "24px" }}>
-          {team.map((member, i) => (
-            <RevealDiv key={member.name} delay={i * 80}>
-              <div
-                style={{
-                  padding: "28px 24px",
-                  border: `1px solid ${COLORS.border}`,
-                  borderRadius: "4px",
-                  background: COLORS.bg,
-                  transition: "border-color 0.2s",
-                }}
-                onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.borderColor = member.color}
-                onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.borderColor = COLORS.border}
-              >
-                {/* Avatar */}
-                <div
-                  style={{
-                    width: "52px",
-                    height: "52px",
-                    borderRadius: "50%",
-                    background: `${member.color}18`,
-                    border: `1px solid ${member.color}40`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: "20px",
-                  }}
-                >
-                  <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "16px", color: member.color, fontWeight: 500 }}>
-                    {member.initials}
-                  </span>
-                </div>
-                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "17px", fontWeight: 500, color: COLORS.text, margin: "0 0 4px" }}>
-                  {member.name}
-                </h3>
-                <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", color: member.color, letterSpacing: "0.15em", margin: "0 0 14px" }}>
-                  {member.role.toUpperCase()}
-                </p>
-                <p style={{ fontSize: "12px", color: COLORS.muted, lineHeight: 1.7, margin: 0 }}>
-                  {member.desc}
-                </p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "48px" }}>
+          <RevealDiv delay={80}>
+            <p style={{ color: COLORS.muted, lineHeight: 1.8, fontSize: "13px", marginBottom: "16px" }}>
+              Realm of Glaze is an ongoing 3D open-world project I'm currently building using Three.js, React Three Fiber, and Next.js.
+            </p>
+            <p style={{ color: COLORS.muted, lineHeight: 1.8, fontSize: "13px", marginBottom: "16px" }}>
+              It focuses on interactive environments, smooth player movement, and real-time rendering on the web.
+            </p>
+            <p style={{ color: COLORS.muted, lineHeight: 1.8, fontSize: "13px", marginBottom: "24px" }}>
+              This project reflects my interest in pushing web development beyond traditional websites.
+            </p>
+            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+              {["Three.js", "R3F", "GLSL", "React", "Next.js"].map(tag => (
+                <span key={tag} style={{ padding: "3px 8px", background: COLORS.bg, border: `1px solid ${COLORS.border}`, borderRadius: "2px", fontSize: "9px", color: COLORS.accent, fontFamily: "'DM Mono', monospace" }}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </RevealDiv>
+          <RevealDiv delay={160}>
+            {/* Visual Placeholder */}
+            <div style={{ position: "relative", width: "100%", height: "220px", background: COLORS.surface, borderRadius: "6px", display: "flex", alignItems: "center", justifyContent: "center", border: `1px solid ${COLORS.border}`, overflow: "hidden" }}>
+              <div style={{ textAlign: "center", color: COLORS.muted }}>
+                <Cpu size={32} style={{ marginBottom: "12px", opacity: 0.5 }} />
+                <p style={{ fontSize: "11px", fontFamily: "'DM Mono', monospace" }}>[ 3D WORLD PREVIEW ]</p>
               </div>
-            </RevealDiv>
-          ))}
+              
+              {/* 3D VERSION - COMMENTED OUT FOR LATER
+              <div style={{ position: 'absolute', inset: 0 }}>
+                <Canvas>
+                  <ambientLight intensity={0.5} />
+                  <pointLight position={[10, 10, 10]} />
+                  <Box position={[-1.2, 0, 0]} />
+                  <Box position={[1.2, 0, 0]} />
+                </Canvas>
+              </div>
+              */}
+            </div>
+          </RevealDiv>
         </div>
       </section>
 
@@ -635,7 +664,7 @@ export function MinimalistLayout() {
             Let's work together.
           </h2>
           <p style={{ fontSize: "13px", color: COLORS.muted, marginBottom: "48px" }}>
-            Tell us what you're building. We'll take it from there.
+            I focus on results, not just pixels.
           </p>
         </RevealDiv>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "64px" }}>
