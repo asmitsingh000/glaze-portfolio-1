@@ -116,6 +116,7 @@ export function MinimalistLayout() {
   const router = useRouter();
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Load persistence
