@@ -275,19 +275,19 @@ export function StylePicker() {
           style={{
             fontFamily: "'Cinzel', serif",
             color: "#F0F4F0",
-            fontSize: "clamp(36px, 7vw, 64px)",
+            fontSize: "clamp(25px, 7vw, 55px)",
             fontWeight: 400,
             letterSpacing: "0.18em",
             margin: 0,
           }}
         >
-          Glaze
-        </h1>
+          WELCOME TO ASMIT'S PORTFOLIO
+        </h1><br />
         <p style={{ color: "#6b8870", fontFamily: "'Crimson Pro', serif", fontSize: "18px", marginTop: "10px" }}>
-          Digital Agency · Web · Design · Marketing · Growth
-        </p><br />
-         <p style={{ color: "#6b8870", fontFamily: "'Crimson Pro', serif", fontSize: "18px", marginTop: "10px" }}>
-          Building Digital Products That Perform
+          Founder of Glaze. A digital agency.
+        </p>
+        <p style={{ color: "#6b8870", fontFamily: "'Crimson Pro', serif", fontSize: "18px", marginTop: "10px" }}>
+          Software · Web · Design · Marketing · Growth
         </p>
       </div>
 
@@ -342,13 +342,14 @@ export function StylePicker() {
             <span
               style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: "38px",
+                fontSize: "20px",
                 color: isMinimalistDark ? "#f0f0f0" : "#1a1a18",
                 fontWeight: 400,
                 letterSpacing: "0.06em",
+                textAlign: "center",
               }}
             >
-              Glaze
+              WELCOME TO ASMIT'S PORTFOLIO
             </span>
             <div style={{ width: "60px", height: "1px", background: isMinimalistDark ? "#4ade80" : "#2d5a3d" }} />
           </div>
@@ -434,14 +435,15 @@ export function StylePicker() {
             <span
               style={{
                 fontFamily: "'Cinzel', serif",
-                fontSize: "28px",
+                fontSize: "20px",
                 color: "#D4AF37",
                 fontWeight: 400,
                 letterSpacing: "0.2em",
                 position: "relative",
+                textAlign: "center",
               }}
             >
-              Glaze
+              WELCOME TO ASMIT'S PORTFOLIO
             </span>
             <div style={{ width: "60px", height: "1px", background: "#50C878", position: "relative" }} />
           </div>

@@ -14,8 +14,29 @@ import {
   Globe,
   Zap,
   Cpu,
-  Rocket
+  Rocket,
+  Github,
+  Linkedin,
+  Mail,
+  ExternalLink
 } from "lucide-react";
+
+const getTechIcon = (tech: string) => {
+  const t = tech.toLowerCase();
+  if (t.includes("next")) return <Globe size={12} />;
+  if (t.includes("react")) return <Layout size={12} />;
+  if (t.includes("node")) return <Terminal size={12} />;
+  if (t.includes("tailwind")) return <Settings size={12} />;
+  if (t.includes("typescript")) return <Code2 size={12} />;
+  if (t.includes("vercel")) return <Rocket size={12} />;
+  if (t.includes("sql") || t.includes("db") || t.includes("prisma") || t.includes("mongo")) return <Database size={12} />;
+  if (t.includes("figma") || t.includes("design") || t.includes("copywriting")) return <PenTool size={12} />;
+  if (t.includes("api")) return <Server size={12} />;
+  if (t.includes("github") || t.includes("git")) return <GitBranch size={12} />;
+  if (t.includes("automation")) return <Zap size={12} />;
+  if (t.includes("panel") || t.includes("admin")) return <ShieldCheck size={12} />;
+  return <Code2 size={12} />;
+};
 
 const C = {
   bg: "#0a1a0f",
@@ -236,7 +257,7 @@ export function ClassicLayout() {
         }}
       >
         <span style={{ fontFamily: "'Cinzel', serif", fontSize: "18px", color: C.gold, fontWeight: 400, letterSpacing: "0.2em" }}>
-          <a href="#hero">GLAZE</a>
+          <a href="#hero">ASMIT'S PORTFOLIO</a>
         </span>
 
         {/* Desktop */}
@@ -496,7 +517,27 @@ export function ClassicLayout() {
                     <p style={{ fontSize: "16px", color: C.muted, lineHeight: 1.7, marginBottom: "20px" }}>{p.desc}</p>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
                       {p.stack.map(s => (
-                        <span key={s} style={{ padding: "3px 10px", border: `1px solid ${C.accent}`, borderRadius: "2px", fontFamily: "'Crimson Pro', serif", fontSize: "13px", color: C.accent }}>
+                        <span 
+                          key={s} 
+                          style={{ 
+                            padding: "3px 10px", 
+                            border: `1px solid ${C.accent}`, 
+                            borderRadius: "2px", 
+                            fontFamily: "'Crimson Pro', serif", 
+                            fontSize: "13px", 
+                            color: C.accent,
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "5px"
+                          }}
+                        >
+                          <span style={{ 
+                            display: "flex", 
+                            color: C.gold, 
+                            filter: `drop-shadow(0 0 4px ${C.gold}80)` 
+                          }}>
+                            {getTechIcon(s)}
+                          </span>
                           {s}
                         </span>
                       ))}
@@ -634,21 +675,40 @@ export function ClassicLayout() {
             <p style={{ fontFamily: "'Cinzel', serif", fontSize: "11px", color: C.gold, letterSpacing: "0.25em", marginBottom: "28px" }}>CHANNELS</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0", marginBottom: "48px" }}>
               {[
-                 { label: "GitHub", url: "https://github.com/asmitsingh000" },
-                  { label: "LinkedIn", url: "https://www.linkedin.com/in/asmit-singh-1a76133b0/" },
-                  { label: "Email — glaze0999@gmail.com", url: "mailto:glaze0999@gmail.com" },
+                  { label: "GitHub", url: "https://github.com/asmitsingh000", icon: <Github size={16} /> },
+                  { label: "LinkedIn", url: "https://www.linkedin.com/in/asmit-singh-1a76133b0/", icon: <Linkedin size={16} /> },
+                  { label: "Email — glaze0999@gmail.com", url: "mailto:glaze0999@gmail.com", icon: <Mail size={16} /> },
               ].map(link => (
                 <a
                   key={link.label}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ fontFamily: "'Cinzel', serif", fontSize: "12px", color: C.muted, textDecoration: "none", letterSpacing: "0.1em", display: "flex", alignItems: "center", gap: "12px", padding: "14px 0", borderBottom: `1px solid ${C.border}`, transition: "color 0.2s" }}
+                  style={{
+                    fontFamily: "'Cinzel', serif",
+                    fontSize: "12px",
+                    color: C.muted,
+                    textDecoration: "none",
+                    letterSpacing: "0.1em",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "14px",
+                    padding: "16px 0",
+                    borderBottom: `1px solid ${C.border}`,
+                    transition: "color 0.2s"
+                  }}
                   onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = C.accent}
                   onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = C.muted}
                 >
-                  <span style={{ width: "24px", height: "1px", background: "currentColor", display: "inline-block", flexShrink: 0 }} />
-                  {link.label.toUpperCase()} ↗
+                  <div style={{ 
+                    color: C.gold, 
+                    display: "flex", 
+                    alignItems: "center",
+                    filter: `drop-shadow(0 0 5px ${C.gold}80)`
+                  }}>
+                    {link.icon}
+                  </div>
+                  {link.label.toUpperCase()} <ExternalLink size={10} style={{ marginLeft: "auto", opacity: 0.5 }} />
                 </a>
               ))}
             </div>

@@ -15,8 +15,30 @@ import {
   Zap,
   Cpu,
   ShieldCheck,
-  Rocket
+  Rocket,
+  Github,
+  Linkedin,
+  Mail,
+  ExternalLink
 } from "lucide-react";
+
+// Helper for tech icons
+const getTechIcon = (tech: string) => {
+  const t = tech.toLowerCase();
+  if (t.includes("next")) return <Globe size={12} />;
+  if (t.includes("react")) return <Layout size={12} />;
+  if (t.includes("node")) return <Terminal size={12} />;
+  if (t.includes("tailwind")) return <Settings size={12} />;
+  if (t.includes("typescript")) return <Code2 size={12} />;
+  if (t.includes("vercel")) return <Rocket size={12} />;
+  if (t.includes("sql") || t.includes("db") || t.includes("prisma") || t.includes("mongo")) return <Database size={12} />;
+  if (t.includes("figma") || t.includes("design") || t.includes("copywriting")) return <PenTool size={12} />;
+  if (t.includes("api")) return <Server size={12} />;
+  if (t.includes("github") || t.includes("git")) return <GitBranch size={12} />;
+  if (t.includes("automation")) return <Zap size={12} />;
+  if (t.includes("panel") || t.includes("admin")) return <ShieldCheck size={12} />;
+  return <Code2 size={12} />;
+};
 
 const LIGHT_COLORS = {
   bg: "#fafaf9",
@@ -180,7 +202,7 @@ export function MinimalistLayout() {
             cursor: "default",
           }}
         >
-          Glaze
+          ASMIT'S PORTFOLIO
         </span>
 
         {/* Desktop links */}
@@ -574,7 +596,28 @@ export function MinimalistLayout() {
                     <p style={{ fontSize: "12px", color: COLORS.muted, lineHeight: 1.7, margin: "0 0 16px" }}>{p.desc}</p>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "20px" }}>
                       {p.stack.map(s => (
-                        <span key={s} style={{ padding: "3px 8px", background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: "2px", fontSize: "10px", color: COLORS.accent, fontFamily: "'DM Mono', monospace" }}>
+                        <span 
+                          key={s} 
+                          style={{ 
+                            padding: "3px 8px", 
+                            background: COLORS.surface, 
+                            border: `1px solid ${COLORS.border}`, 
+                            borderRadius: "2px", 
+                            fontSize: "10px", 
+                            color: COLORS.accent, 
+                            fontFamily: "'DM Mono', monospace",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "4px"
+                          }}
+                        >
+                          <span style={{ 
+                            display: "flex", 
+                            color: COLORS.accent,
+                            filter: `drop-shadow(0 0 4px ${COLORS.accent}40)` 
+                          }}>
+                            {getTechIcon(s)}
+                          </span>
                           {s}
                         </span>
                       ))}
@@ -759,9 +802,9 @@ export function MinimalistLayout() {
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "40px" }}>
                 {[
-                  { label: "GitHub", url: "https://github.com/asmitsingh000" },
-                  { label: "LinkedIn", url: "https://www.linkedin.com/in/asmit-singh-1a76133b0/" },
-                  { label: "Email — glaze0999@gmail.com", url: "mailto:glaze0999@gmail.com" },
+                  { label: "GitHub", url: "https://github.com/asmitsingh000", icon: <Github size={16} /> },
+                  { label: "LinkedIn", url: "https://www.linkedin.com/in/asmit-singh-1a76133b0/", icon: <Linkedin size={16} /> },
+                  { label: "Email — glaze0999@gmail.com", url: "mailto:glaze0999@gmail.com", icon: <Mail size={16} /> },
                 ].map(link => (
                   <a
                     key={link.label}
@@ -775,14 +818,22 @@ export function MinimalistLayout() {
                       textDecoration: "none",
                       display: "flex",
                       alignItems: "center",
-                      gap: "10px",
+                      gap: "12px",
                       transition: "color 0.2s",
                     }}
                     onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = COLORS.accent}
                     onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = COLORS.muted}
                   >
-                    <span style={{ width: "20px", height: "1px", background: "currentColor", display: "inline-block" }} />
-                    {link.label} ↗
+                    <div style={{ 
+                      color: "currentColor", 
+                      transition: "color 0.2s",
+                      display: "flex",
+                      alignItems: "center",
+                      filter: `drop-shadow(0 0 5px ${COLORS.accent}60)`
+                    }}>
+                      {link.icon}
+                    </div>
+                    {link.label} <ExternalLink size={10} style={{ marginLeft: "4px", opacity: 0.5 }} />
                   </a>
                 ))}
               </div>
