@@ -350,7 +350,7 @@ export function MinimalistLayout() {
           </h1>
         </RevealDiv>
         <RevealDiv delay={160}>
-          <p style={{ fontSize: "16px", color: COLORS.muted, marginBottom: "12px", maxWidth: "600px", lineHeight: 1.7 }}>
+          <p style={{ fontSize: "16px", color: COLORS.muted, marginBottom: "12px", maxWidth: "600px", textalign:"center",lineHeight: 1.7 }}>
             I'm Asmit Singh — a web & software developer from Nepal.
           </p>
           <p style={{ fontSize: "14px", color: COLORS.accent, marginBottom: "48px", maxWidth: "480px", lineHeight: 1.7, fontFamily: "'DM Mono', monospace" }}>
