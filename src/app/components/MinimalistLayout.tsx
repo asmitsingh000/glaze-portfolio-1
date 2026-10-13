@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { 
@@ -22,6 +22,7 @@ import {
 
 import GitHub from "@mui/icons-material/GitHub";
 import LinkedIn from "@mui/icons-material/LinkedIn";
+import { sendContactMessage } from "../lib/contact-client";
 
 // Helper for tech icons
 const getTechIcon = (tech: string) => {
@@ -137,10 +138,27 @@ const skills = [
 
 export function MinimalistLayout() {
   const router = useRouter();
-  const [formState, setFormState] = useState({ name: "", email: "", message: "" });
+  const [formState, setFormState] = useState({ name: "", email: "", message: "", website: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const handleContactSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError("");
+    try {
+      await sendContactMessage(formState);
+      setSubmitted(true);
+      setFormState({ name: "", email: "", message: "", website: "" });
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "Unable to send your message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   // Load persistence
   useEffect(() => {
@@ -720,7 +738,7 @@ export function MinimalistLayout() {
                 <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "12px", color: COLORS.muted }}>We'll get back to you within 24 hours.</p>
               </div>
             ) : (
-              <form onSubmit={e => { e.preventDefault(); setSubmitted(true); }} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              <form onSubmit={handleContactSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
                 {[
                   { label: "Name", name: "name", type: "text", placeholder: "Your name" },
                   { label: "Email", name: "email", type: "email", placeholder: "your@email.com" },
@@ -730,11 +748,14 @@ export function MinimalistLayout() {
                       {field.label.toUpperCase()}
                     </label>
                     <input
+                      name={field.name}
                       type={field.type}
                       placeholder={field.placeholder}
-                      value={(formState as any)[field.name]}
-                      onChange={e => setFormState(prev => ({ ...prev, [field.name]: e.target.value }))}
+                      value={field.name === "name" ? formState.name : formState.email}
+                      onChange={e => setFormState(prev => field.name === "name" ? { ...prev, name: e.target.value } : { ...prev, email: e.target.value })}
                       required
+                      maxLength={field.name === "name" ? 100 : 254}
+                      autoComplete={field.name === "name" ? "name" : "email"}
                       style={{
                         width: "100%",
                         padding: "10px 14px",
@@ -755,10 +776,12 @@ export function MinimalistLayout() {
                     WHAT ARE YOU BUILDING?
                   </label>
                   <textarea
+                    name="message"
                     placeholder="Tell us about your project..."
                     value={formState.message}
                     onChange={e => setFormState(prev => ({ ...prev, message: e.target.value }))}
                     required
+                    maxLength={5000}
                     rows={5}
                     style={{
                       width: "100%",
@@ -775,8 +798,26 @@ export function MinimalistLayout() {
                     }}
                   />
                 </div>
+                <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: "1px", height: "1px", overflow: "hidden" }}>
+                  <label htmlFor="minimalist-contact-website">Leave this field empty</label>
+                  <input
+                    id="minimalist-contact-website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formState.website}
+                    onChange={e => setFormState(prev => ({ ...prev, website: e.target.value }))}
+                  />
+                </div>
+                {submitError && (
+                  <p role="alert" aria-live="polite" style={{ color: "#ff8c8c", fontSize: "13px", margin: 0 }}>
+                    {submitError}
+                  </p>
+                )}
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   style={{
                     padding: "12px 24px",
                     background: COLORS.text,
@@ -790,7 +831,7 @@ export function MinimalistLayout() {
                     alignSelf: "flex-start",
                   }}
                 >
-                  SEND MESSAGE
+                  {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
                 </button>
               </form>
             )}

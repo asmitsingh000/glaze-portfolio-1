@@ -1,61 +1,39 @@
 # Glaze Portfolio
 
-A modern, high-performance UI/UX portfolio built with Next.js, Framer Motion, and Tailwind CSS.
+A personal portfolio built with Next.js, React, TypeScript, and Framer Motion.
 
-## 🚀 Deployment
+## Run locally
 
-This project is optimized for deployment on **Vercel**.
-
-### Option 1: Vercel GitHub Integration (Recommended)
-1. Push your code to GitHub.
-2. Go to [vercel.com/new](https://vercel.com/new).
-3. Import this repository.
-4. Click **Deploy**.
-
-### Option 2: Vercel CLI
-If you have the Vercel CLI installed:
-```bash
-vercel login
-vercel link
-vercel deploy
-```
-
----
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-
-## Getting Started
-
-First, run the development server:
+Requirements: Node.js 20 or newer.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contact form
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The Classic and Minimalist portfolio layouts send contact form submissions through [FormSubmit](https://formsubmit.co/) to `glaze0999@gmail.com`. No API keys, Redis database, or `.env.local` configuration are required.
 
-## Learn More
+The first time the form is submitted, FormSubmit sends an activation email to that inbox. Open it and confirm the address before expecting contact messages. Check the spam folder if it does not arrive. FormSubmit processes the submitted name, email address, and message; its spam protection and the form's honeypot field are enabled.
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project can be deployed to Vercel:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Push the repository to GitHub and import it at [vercel.com/new](https://vercel.com/new).
+2. Deploy using the default Next.js settings.
+3. After deployment, submit a test message and confirm the FormSubmit activation email if this is the first submission.
 
-## Deploy on Vercel
+For command-line deployment, use the [Vercel CLI](https://vercel.com/docs/cli):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm install --global vercel
+vercel
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Environment files
+
+Local environment files such as `.env.local` are ignored by Git. Do not commit API keys, passwords, or other secrets.

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { 
@@ -22,6 +22,7 @@ import {
 
 import GitHub from "@mui/icons-material/GitHub";
 import LinkedIn from "@mui/icons-material/LinkedIn";
+import { sendContactMessage } from "../lib/contact-client";
 
 const getTechIcon = (tech: string) => {
   const t = tech.toLowerCase();
@@ -210,7 +211,9 @@ const skills = [
 export function ClassicLayout() {
   const router = useRouter();
   const [submitted, setSubmitted]   = useState(false);
-  const [formState, setFormState]   = useState({ name: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [formState, setFormState] = useState({ name: "", email: "", message: "", website: "" });
   const [scrollY, setScrollY]       = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -222,6 +225,20 @@ export function ClassicLayout() {
 
   const switchMode = () => { localStorage.removeItem("asmit-style-mode"); router.push("/"); };
   const scrollTo   = (id: string) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setMobileOpen(false); };
+  const handleContactSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError("");
+    try {
+      await sendContactMessage(formState);
+      setSubmitted(true);
+      setFormState({ name: "", email: "", message: "", website: "" });
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "Unable to send your message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const navLinks = [
     { label: "About",    id: "about" },
@@ -625,7 +642,7 @@ export function ClassicLayout() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={e => { e.preventDefault(); setSubmitted(true); }} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+              <form onSubmit={handleContactSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                 {[
                   { label: "Name",  name: "name",  type: "text",  placeholder: "Your name" },
                   { label: "Email", name: "email", type: "email", placeholder: "your@email.com" },
@@ -635,11 +652,14 @@ export function ClassicLayout() {
                       {f.label.toUpperCase()}
                     </label>
                     <input
+                      name={f.name}
                       type={f.type}
                       placeholder={f.placeholder}
-                      value={(formState as any)[f.name]}
-                      onChange={e => setFormState(p => ({ ...p, [f.name]: e.target.value }))}
+                      value={f.name === "name" ? formState.name : formState.email}
+                      onChange={e => setFormState(p => f.name === "name" ? { ...p, name: e.target.value } : { ...p, email: e.target.value })}
                       required
+                      maxLength={f.name === "name" ? 100 : 254}
+                      autoComplete={f.name === "name" ? "name" : "email"}
                       style={{ width: "100%", padding: "12px 16px", border: `1px solid ${C.border}`, borderRadius: "2px", background: C.surface, color: C.text, fontFamily: "'Crimson Pro', serif", fontSize: "16px", outline: "none", boxSizing: "border-box", transition: "border-color 0.2s" }}
                       onFocus={e => (e.target as HTMLInputElement).style.borderColor = C.accent}
                       onBlur={e  => (e.target as HTMLInputElement).style.borderColor = C.border}
@@ -648,26 +668,46 @@ export function ClassicLayout() {
                 ))}
                 <div>
                   <label style={{ fontFamily: "'Cinzel', serif", fontSize: "10px", color: C.gold, letterSpacing: "0.2em", display: "block", marginBottom: "8px" }}>
-                    WHAT ARE YOU BUILDING?
+                    CONTACT WITH ME FOR MORE DETAILS, WE CAN HAVE TALKS THEN...
                   </label>
                   <textarea
+                    name="message"
                     placeholder="Tell us about your project..."
                     value={formState.message}
                     onChange={e => setFormState(p => ({ ...p, message: e.target.value }))}
                     required
+                    maxLength={5000}
                     rows={5}
                     style={{ width: "100%", padding: "12px 16px", border: `1px solid ${C.border}`, borderRadius: "2px", background: C.surface, color: C.text, fontFamily: "'Crimson Pro', serif", fontSize: "16px", outline: "none", resize: "vertical", boxSizing: "border-box", transition: "border-color 0.2s" }}
                     onFocus={e => (e.target as HTMLTextAreaElement).style.borderColor = C.accent}
                     onBlur={e  => (e.target as HTMLTextAreaElement).style.borderColor = C.border}
                   />
                 </div>
+                <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: "1px", height: "1px", overflow: "hidden" }}>
+                  <label htmlFor="classic-contact-website">Leave this field empty</label>
+                  <input
+                    id="classic-contact-website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formState.website}
+                    onChange={e => setFormState(p => ({ ...p, website: e.target.value }))}
+                  />
+                </div>
+                {submitError && (
+                  <p role="alert" aria-live="polite" style={{ color: "#ff8c8c", fontFamily: "'Crimson Pro', serif", fontSize: "15px", margin: 0 }}>
+                    {submitError}
+                  </p>
+                )}
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   style={{ padding: "14px 28px", background: "transparent", border: `1px solid ${C.gold}`, color: C.gold, fontFamily: "'Cinzel', serif", fontSize: "11px", letterSpacing: "0.2em", cursor: "pointer", borderRadius: "2px", alignSelf: "flex-start", transition: "background 0.2s, color 0.2s" }}
                   onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = C.gold; (e.currentTarget as HTMLButtonElement).style.color = C.bg; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; (e.currentTarget as HTMLButtonElement).style.color = C.gold; }}
                 >
-                  SEND MESSAGE
+                  {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
                 </button>
               </form>
             )}
